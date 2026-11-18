@@ -1,0 +1,15 @@
+{"title": "Software reset: APB write of the key to SOFT_RESET (derived)",
+ "cycles": 10,
+ "signals": [
+  {"name": "clk_i", "wave": "pppppppppp"},
+  {"name": "psel_i", "wave": "01.0......"},
+  {"name": "penable_i", "wave": "0.10......"},
+  {"name": "paddr_i[4:0]", "wave": "x=.x......", "data": ["0x0C"]},
+  {"name": "pwdata_i", "wave": "x=.x......", "data": ["0x52535421"]},
+  {},
+  {"name": "system_reset_req_o", "wave": "0..10....."},
+  {"name": "RESET_CAUSE[3]", "wave": "0..1......"},
+  {"name": "sys_rst_n (adr_rst_gen)", "wave": "1..0....1."},
+  {"name": "CLK_EN", "wave": "=..=......", "data": ["any", "0xFFFFFFFF"]}
+ ],
+ "marks": [{"at": 3, "text": "reset asserted"}, {"at": 8, "text": "released"}]}

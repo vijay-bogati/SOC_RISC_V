@@ -1,0 +1,12 @@
+{"title": "One channel, 128 bytes, aligned (time axis compressed)",
+ "cycles": 12,
+ "signals": [
+  {"name": "CTRL write (start)", "wave": "10.........."},
+  {"name": "STATUS.busy", "wave": "01.........0"},
+  {"name": "AR (8 beats)", "wave": "x=x=x.......", "data": ["0..63", "64..127"]},
+  {"name": "R beats", "wave": "x.=.=x......", "data": ["8", "8"]},
+  {"name": "AW / W beats", "wave": "x...=.=x....", "data": ["8", "8"]},
+  {"name": "B", "wave": "x.....=.=x..", "data": ["OK", "OK"]},
+  {"name": "STATUS.done", "wave": "0..........1"},
+  {"name": "irq_o (CTRL[1] = 1)", "wave": "0..........1"}
+ ]}

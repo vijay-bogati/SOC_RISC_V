@@ -1,0 +1,45 @@
+
+ADR SoC UART and I2C register test
+  PASS  UART0 LCR reads back 8N1 as set at start
+  PASS  UART0 IER writes and reads back
+  PASS  UART0 divisor low byte reads 2
+  PASS  UART0 divisor high byte reads 0
+  PASS  UART0 LCR back to 8N1 after the divisor read
+  PASS  UART1 LCR writes and reads back
+  PASS  UART1 IER writes and reads back
+  PASS  UART1 MCR writes and reads back
+  PASS  UART1 LCR reads 0 with the divisor latch open (not decoded)
+        traps on that read: 0x0000000000000000
+  PASS  UART1 divisor low byte writes and reads back
+  PASS  UART1 divisor high byte writes and reads back
+  PASS  UART1 divisor bytes hold separate values
+  PASS  UART1 LCR reads back with the divisor latch closed
+  PASS  UART1 scratch register reads 0
+  PASS  I2C STATUS reset value: idle, FIFOs empty
+  PASS  I2C PRESCALE reset value is 1
+  PASS  I2C DATA reads 0 when nothing was received
+  PASS  I2C PRESCALE writes and reads back
+  PASS  I2C PRESCALE upper 16 bits read 0
+  PASS  I2C STATUS unchanged by a write
+  PASS  I2C device at 0x50 returns the byte written
+  PASS  I2C no missed ACK on the transfer
+  PASS  I2C STATUS back to idle after the transfer
+  PASS  I2C DATA reads 0 once the byte is taken
+  PASS  I2C IRQ_ENABLE reset value is 0
+  PASS  I2C IRQ_ENABLE writes and reads back
+  PASS  I2C IRQ_ENABLE upper bits read 0
+  PASS  I2C IRQ_STATUS shows DONE after a transfer
+  PASS  I2C IRQ_STATUS DONE kept on a write of 0
+  PASS  I2C IRQ_STATUS DONE cleared by a write of 1
+  PASS  I2C IRQ_STATUS shows RX_READY and DONE after a read
+  PASS  I2C IRQ_STATUS clear once the byte is read
+  PASS  I2C no interrupt while IRQ_ENABLE is 0
+  PASS  I2C DONE interrupt reaches the CPU on source 23
+  PASS  I2C MISS_ACK interrupt reaches the CPU on source 23
+  PASS  I2C STATUS miss_ack cleared through IRQ_STATUS
+  PASS  I2C IRQ_STATUS clear at the end
+All checks passed
+
+[TB] RESULT: PASS (666998 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

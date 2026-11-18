@@ -1,0 +1,19 @@
+#***************************************************************
+# Project name                  : ADR SoC
+# File Name                     : adr_soc_gate.ys
+# Module/class Name             : Yosys script
+# Author                        : Vijay Bogati
+# Description                   : Full-chip synthesis step 2: checkpoint to generic gate netlist
+#***************************************************************
+
+# ADR SoC full-chip synthesis, step 2: from the checkpoint to a generic gate netlist (about 15 min).
+# Generic Yosys gates ($_AND_, $_DFF_PN0_, ...); memories stay as $mem_v2 cells. No PDK.
+read_rtlil syn/out/adr_soc_top_coarse.il
+opt -fast -full
+techmap
+opt -fast
+abc
+opt -fast
+tee -o syn/out/adr_soc_top_gate_stat.txt stat
+tee -o syn/out/check_gate.txt check
+write_verilog -noattr syn/out/adr_soc_top_syn.v

@@ -1,0 +1,10 @@
+{"title": "APB access crossing into the USB clock (number of wait clocks depends on usb_clk_i)",
+ "cycles": 12,
+ "signals": [
+  {"name": "clk_i", "wave": "pppppppppppp"},
+  {"name": "psel_i", "wave": "01.........0"},
+  {"name": "penable_i", "wave": "0.1........0"},
+  {"name": "state_q", "wave": "=..=.=.....=", "data": ["Idle", "Request", "Response (crossing, usbdev, back)", "Done"]},
+  {"name": "pready_o", "wave": "0..........1"},
+  {"name": "prdata_o, pslverr_o", "wave": "x..........=", "data": ["valid"]}
+ ]}

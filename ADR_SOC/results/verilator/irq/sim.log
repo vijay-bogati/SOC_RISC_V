@@ -1,0 +1,38 @@
+
+ADR SoC interrupt test
+  PASS  mtime counts
+  PASS  msip sets mip.MSIP
+  PASS  no trap while mstatus.MIE is off
+  PASS  msip reads back
+  PASS  software interrupt taken once
+  PASS  mcause reports software interrupt
+  PASS  clearing msip clears mip.MSIP
+  PASS  no timer pending when mtimecmp is far away
+  PASS  mtimecmp reads back
+  PASS  timer not fired before the deadline
+  PASS  timer interrupt taken once
+  PASS  timer fired at or after the deadline
+  PASS  mcause reports timer interrupt
+  PASS  raising mtimecmp clears mip.MTIP
+  PASS  priority reads back
+  PASS  threshold reads back
+  PASS  enable reads back
+  PASS  nothing to claim when idle
+  PASS  UART interrupt shows as pending
+  PASS  disabled source does not reach the CPU
+  PASS  priority at threshold is blocked
+  PASS  priority above threshold sets mip.MEIP
+  PASS  external interrupt taken once
+  PASS  mcause reports external interrupt
+  PASS  claim returns the UART source
+  PASS  complete clears mip.MEIP
+  PASS  nothing left to claim
+  PASS  supervisor context sets mip.SEIP
+  PASS  supervisor context does not set mip.MEIP
+  PASS  supervisor claim returns the UART source
+  PASS  supervisor complete clears mip.SEIP
+All checks passed
+
+[TB] RESULT: PASS (429084 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

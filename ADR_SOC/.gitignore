@@ -1,0 +1,5 @@
+# Generated files
+*.dasm
+*.vcd
+obj_dir/
+/syn/out/

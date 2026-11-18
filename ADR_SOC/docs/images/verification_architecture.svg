@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1110 545" width="1110" height="545">
+<rect width="1110" height="545" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1f2937"/></marker><marker id="b" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="#1f2937"/></marker></defs>
+<rect x="20" y="82" width="1070" height="232" rx="6" fill="#f9fafb" stroke="#6b7280" stroke-dasharray="5,3"/>
+<text x="30" y="100" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="#1f2937" font-weight="bold">adr_soc_env</text>
+<rect x="20" y="10" width="330" height="52" rx="5" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.4"/>
+<text x="185.0" y="26.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Run-time switches</text>
+<text x="185.0" y="41.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">+loopback_&lt;pin group&gt; · +no_fabric_mon</text>
+<text x="185.0" y="55.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">+no_cov · +no_sva · +max_cycles · TB_SYNC</text>
+<rect x="390" y="10" width="330" height="52" rx="5" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.4"/>
+<text x="555.0" y="33.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">uvm_test</text>
+<text x="555.0" y="48.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">adr_soc_base_test · adr_debug_test · adr_sba_test</text>
+<rect x="760" y="10" width="330" height="52" rx="5" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.4"/>
+<text x="925.0" y="26.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Sequences</text>
+<text x="925.0" y="41.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">JTAG debugger · debug system bus access</text>
+<text x="925.0" y="55.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">USB host transfers</text>
+<rect x="40" y="112" width="240" height="70" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="160.0" y="137.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Scoreboards</text>
+<text x="160.0" y="152.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">UART0 · UART1 · SPI · QSPI · I2C</text>
+<text x="160.0" y="166.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">APB side vs pins, register/FIFO model</text>
+<rect x="300" y="112" width="220" height="70" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="410.0" y="137.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Functional coverage</text>
+<text x="410.0" y="152.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">cg_uart · cg_spi · cg_i2c</text>
+<text x="410.0" y="166.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">cover properties on the pins</text>
+<rect x="540" y="112" width="260" height="70" rx="5" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.4"/>
+<text x="670.0" y="137.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">End-of-test checker</text>
+<text x="670.0" y="152.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">UART0 EOT / NAK verdict</text>
+<text x="670.0" y="166.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">C-UVM handshake (SCRATCH0/1)</text>
+<rect x="820" y="112" width="250" height="70" rx="5" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.4"/>
+<text x="945.0" y="137.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Fabric monitors (bus VIP)</text>
+<text x="945.0" y="152.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">AXI4: 4 initiator + 5 target ports</text>
+<text x="945.0" y="166.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">APB: 21 slots · protocol checks</text>
+<rect x="40" y="212" width="160" height="82" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="120.0" y="236.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">UART agent</text>
+<text x="120.0" y="251.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">UART0 / UART1 monitors</text>
+<text x="120.0" y="265.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">UART1 RX driver</text>
+<text x="120.0" y="279.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">SVA UART-A01..A04</text>
+<rect x="212" y="212" width="160" height="82" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="292.0" y="236.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">JTAG agent</text>
+<text x="292.0" y="251.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">TAP driver + monitor</text>
+<text x="292.0" y="265.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">RISC-V DMI layer</text>
+<text x="292.0" y="279.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">abstract cmd · SBA</text>
+<rect x="384" y="212" width="160" height="82" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="464.0" y="236.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">SPI / QSPI agent</text>
+<text x="464.0" y="251.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">monitor on 4 chip selects</text>
+<text x="464.0" y="265.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">serial-memory slave</text>
+<text x="464.0" y="279.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">SVA SPI-A01..A07</text>
+<rect x="556" y="212" width="160" height="82" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="636.0" y="236.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">I2C agent</text>
+<text x="636.0" y="251.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">bus monitor</text>
+<text x="636.0" y="265.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">slave + clock stretching</text>
+<text x="636.0" y="279.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">SVA I2C-A01..A06</text>
+<rect x="728" y="212" width="160" height="82" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="808.0" y="236.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">GPIO / PWM agents</text>
+<text x="808.0" y="251.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">GPIO input driver</text>
+<text x="808.0" y="265.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">GPIO and PWM monitors</text>
+<text x="808.0" y="279.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">period and duty</text>
+<rect x="900" y="212" width="170" height="82" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="985.0" y="236.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">OTP · ADC · ETH · USB</text>
+<text x="985.0" y="251.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">OTP macro slave · ADC levels</text>
+<text x="985.0" y="265.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">10GBASE-R 64b/66b monitors</text>
+<text x="985.0" y="279.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">USB host driver + monitor</text>
+<rect x="20" y="350" width="1060" height="52" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="550.0" y="373.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">adr_soc_uvm_top: one interface per pin group · adr_soc_tb_if (clocks, reset, cycle count)</text>
+<text x="550.0" y="388.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">board include: per-test loopbacks, SPI/QSPI line mapping, I2C wired-AND, USB bus resolution</text>
+<rect x="20" y="432" width="1060" height="92" rx="5" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.4"/>
+<text x="550.0" y="468.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">DUT: adr_soc_top</text>
+<text x="550.0" y="483.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">CVA6 runs the test&#x27;s C program (tb/uvm/c_tests) from SRAM · 64-bit AXI4 crossbar · APB peripherals · DDR4 · Ethernet · USB</text>
+<text x="550.0" y="497.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">bound probes (adr_soc_probes) expose the internal AXI4 and APB ports to the fabric monitors, read-only</text>
+<polyline points="555,62 555,82" fill="none" stroke="#1f2937" stroke-width="1.3" marker-end="url(#a)"/>
+<polyline points="120,294 120,350" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="292,294 292,350" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="464,294 464,350" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="636,294 636,350" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="808,294 808,350" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="985,294 985,350" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="550,402 550,432" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="560" y="422" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">chip pins</text>
+<polyline points="1080,478 1100,478 1100,147 1070,147" fill="none" stroke="#1f2937" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#a)"/>
+<polyline points="120,212 120,182" fill="none" stroke="#1f2937" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#a)"/>
+<polyline points="410,212 410,182" fill="none" stroke="#1f2937" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#a)"/>
+<polyline points="820,147 800,147" fill="none" stroke="#1f2937" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#a)"/>
+<text x="1095" y="330" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="end" fill="#6b7280">probes</text>
+</svg>

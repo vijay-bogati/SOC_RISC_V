@@ -1,0 +1,11 @@
+{"title": "AES-128 run (derived): 40 key words, 1 load clock, 10 rounds",
+ "cycles": 12,
+ "signals": [
+  {"name": "clk_i", "wave": "pppppppppppp"},
+  {"name": "CTRL write (start)", "wave": "010........."},
+  {"name": "state_q", "wave": "x=.=.=.=...=", "data": ["Idle", "Expand (40 clocks)", "Rounds", "... 10 clocks", "Idle"]},
+  {"name": "STATUS.busy", "wave": "0.1........0"},
+  {"name": "STATUS.done", "wave": "0..........1"},
+  {"name": "irq_o (IRQ_EN = 1)", "wave": "0..........1"}
+ ],
+ "marks": [{"at": 2, "text": "start edge"}, {"at": 11, "text": "done: 51 clocks after the start edge"}]}

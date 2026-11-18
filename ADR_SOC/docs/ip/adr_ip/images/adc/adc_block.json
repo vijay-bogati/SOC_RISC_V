@@ -1,0 +1,18 @@
+{"size": [840, 270],
+ "frame": {"box": [170, 14, 450, 240], "title": "adr_adc_ctrl (digital side of an 8-bit SAR ADC)"},
+ "boxes": [
+  {"box": [190, 50, 150, 80], "title": "Registers", "lines": ["CTRL, STATUS,", "DATA, DIV"], "color": "blue"},
+  {"box": [380, 50, 220, 90], "title": "SAR sequencer", "lines": ["trial bit 0x80 .. 0x01", "DIV + 1 clocks per bit", "keep bit if compare = 1"], "color": "green"},
+  {"box": [380, 170, 220, 60], "title": "done_q", "lines": ["STATUS.done, W1C"], "color": "red"}
+ ],
+ "arrows": [
+  {"points": [[20, 90], [188, 90]], "label": "APB", "at": [24, 82], "both": true},
+  {"points": [[340, 90], [378, 90]]},
+  {"points": [[490, 140], [490, 168]]},
+  {"points": [[600, 70], [820, 70]], "label": "channel_o", "at": [640, 62]},
+  {"points": [[600, 100], [820, 100]], "label": "dac_code_o[7:0] = result | trial", "at": [640, 92]},
+  {"points": [[820, 130], [602, 130]], "label": "compare_i (synchronized)", "at": [640, 122]},
+  {"points": [[600, 200], [820, 200]], "label": "irq_o: PLIC 24", "at": [640, 192]}
+ ],
+ "texts": [{"at": [640, 150], "text": "analog comparator and DAC outside", "size": 10, "color": "grey"},
+           {"at": [20, 230], "text": "clk_i gated by CLK_EN bit 10", "size": 10, "color": "grey"}]}

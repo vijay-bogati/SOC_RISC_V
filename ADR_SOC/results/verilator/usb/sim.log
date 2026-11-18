@@ -1,0 +1,19 @@
+
+ADR SoC USB test
+  PASS  the device starts disabled
+  PASS  the packet buffer reads back
+  PASS  the bus is sensed
+  PASS  a start of frame updates the frame number
+  PASS  a SETUP packet arrives
+  PASS  a received packet raises the interrupt
+  PASS  the SETUP is on endpoint 0 with 8 bytes
+  PASS  the SETUP data is right
+  PASS  an OUT packet arrives on endpoint 1 with 4 bytes
+  PASS  the OUT data is right
+  PASS  the host accepts the IN data
+  PASS  the sent flag clears
+All checks passed
+
+[TB] RESULT: PASS (176988 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

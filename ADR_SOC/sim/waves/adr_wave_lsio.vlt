@@ -1,0 +1,9 @@
+// ADR SoC - Verilator trace filter for the low-speed I/O waveform (used with adr_wave_dump_lsio.sv).
+// The simulator records the whole design whatever $dumpvars asks for, so the scope is limited here:
+// nothing is traced except the bench top, the low-speed I/O subsystem (UART0, UART1, GPIO, SPI, QSPI,
+// I2C, pin mux) and the I2C device model. The last matching rule wins.
+`verilator_config
+tracing_off -scope "*"
+tracing_on  -scope "tb_top" -levels 1
+tracing_on  -scope "tb_top.i_bench.i_dut.i_lsio*"
+tracing_on  -scope "tb_top.i_bench.i_i2c_dev*"

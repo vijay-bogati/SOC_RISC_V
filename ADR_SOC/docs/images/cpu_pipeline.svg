@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340">
+<rect width="880" height="340" fill="#ffffff"/>
+<rect x="12" y="20" width="126" height="90" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="75.0" y="54.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">PC generation</text>
+<text x="75.0" y="69.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">next PC,</text>
+<text x="75.0" y="84.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">branch prediction</text>
+<polyline points="138,65 157,65" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="157,65 148.0,69.5 148.0,60.5" fill="#475569"/>
+<rect x="157" y="20" width="126" height="90" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="220.0" y="54.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Instruction fetch</text>
+<text x="220.0" y="69.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">cache access,</text>
+<text x="220.0" y="84.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">instruction queue</text>
+<polyline points="283,65 302,65" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="302,65 293.0,69.5 293.0,60.5" fill="#475569"/>
+<rect x="302" y="20" width="126" height="90" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="365.0" y="54.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Decode</text>
+<text x="365.0" y="69.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">expands compressed</text>
+<text x="365.0" y="84.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">instructions</text>
+<polyline points="428,65 447,65" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="447,65 438.0,69.5 438.0,60.5" fill="#475569"/>
+<rect x="447" y="20" width="126" height="90" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="510.0" y="54.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Issue</text>
+<text x="510.0" y="69.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">dependencies,</text>
+<text x="510.0" y="84.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">operands, forwarding</text>
+<polyline points="573,65 592,65" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="592,65 583.0,69.5 583.0,60.5" fill="#475569"/>
+<rect x="592" y="20" width="126" height="90" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="655.0" y="54.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Execute</text>
+<text x="655.0" y="69.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">ALU, multiply, FPU,</text>
+<text x="655.0" y="84.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">branch, load/store</text>
+<polyline points="718,65 737,65" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="737,65 728.0,69.5 728.0,60.5" fill="#475569"/>
+<rect x="737" y="20" width="126" height="90" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="800.0" y="54.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Commit</text>
+<text x="800.0" y="69.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">retires in order,</text>
+<text x="800.0" y="84.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">exceptions, CSRs</text>
+<rect x="157" y="150" width="126" height="52" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="220.0" y="172.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">I-cache</text>
+<text x="220.0" y="187.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">16 KiB, 4 ways</text>
+<rect x="592" y="150" width="126" height="52" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="655.0" y="172.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">D-cache</text>
+<text x="655.0" y="187.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">32 KiB, 8 ways</text>
+<polyline points="220,110 220,148" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="220,148 215.5,139.0 224.5,139.0" fill="#475569"/>
+<polygon points="220,110 224.5,119.0 215.5,119.0" fill="#475569"/>
+<polyline points="655,110 655,148" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="655,148 650.5,139.0 659.5,139.0" fill="#475569"/>
+<polygon points="655,110 659.5,119.0 650.5,119.0" fill="#475569"/>
+<rect x="330" y="216" width="220" height="52" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="440.0" y="238.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">wt_axi_adapter</text>
+<text x="440.0" y="253.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">merges fetch and data traffic</text>
+<polyline points="220,202 220,242 328,242" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="328,242 319.0,246.5 319.0,237.5" fill="#475569"/>
+<polygon points="220,202 224.5,211.0 215.5,211.0" fill="#475569"/>
+<polyline points="655,202 655,242 552,242" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="552,242 561.0,237.5 561.0,246.5" fill="#475569"/>
+<polygon points="655,202 659.5,211.0 650.5,211.0" fill="#475569"/>
+<polyline points="440,268 440,306" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="440,306 435.5,297.0 444.5,297.0" fill="#475569"/>
+<polygon points="440,268 444.5,277.0 435.5,277.0" fill="#475569"/>
+<text x="450" y="294" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="start" fill="#64748b">AXI4, crossbar initiator 0</text>
+<text x="12" y="326" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="start" fill="#64748b">Single issue, 8-entry scoreboard, 2 commit ports. Execution may finish out of order; retirement is in order.</text>
+</svg>

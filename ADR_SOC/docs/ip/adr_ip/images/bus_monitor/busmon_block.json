@@ -1,0 +1,21 @@
+{"size": [840, 300],
+ "frame": {"box": [200, 14, 450, 270], "title": "adr_bus_monitor"},
+ "boxes": [
+  {"box": [220, 44, 180, 80], "title": "Error capture", "lines": ["STATUS read bits [3:0]", "STATUS write bits [7:4]", "sticky, W1C"], "color": "amber"},
+  {"box": [220, 150, 180, 80], "title": "First-error address", "lines": ["lowest initiator wins,", "read before write;", "only when STATUS was 0"], "color": "green"},
+  {"box": [440, 44, 190, 80], "title": "Register interface", "lines": ["STATUS, ADDR_LO, ADDR_HI,", "IRQ_EN", "PREADY = 1, PSLVERR = 0"], "color": "blue"},
+  {"box": [440, 170, 190, 50], "title": "irq_o", "lines": ["any STATUS bit AND IRQ_EN"], "color": "red"}
+ ],
+ "arrows": [
+  {"points": [[20, 70], [218, 70]], "label": "read_error_i[3:0]", "at": [24, 62]},
+  {"points": [[20, 100], [218, 100]], "label": "write_error_i[3:0]", "at": [24, 92]},
+  {"points": [[20, 170], [218, 170]], "label": "last_read_addr_i[3:0][63:0]", "at": [24, 162]},
+  {"points": [[20, 205], [218, 205]], "label": "last_write_addr_i[3:0][63:0]", "at": [24, 197]},
+  {"points": [[310, 124], [310, 148]]},
+  {"points": [[400, 84], [438, 84]]},
+  {"points": [[400, 190], [420, 190], [420, 110], [438, 110]]},
+  {"points": [[820, 84], [632, 84]], "label": "APB", "at": [700, 76], "both": true},
+  {"points": [[632, 195], [820, 195]], "label": "PLIC source 21", "at": [700, 187]}
+ ],
+ "texts": [{"at": [20, 250], "text": "from adr_interconnect: one bit per crossbar initiator", "size": 10, "color": "grey"},
+           {"at": [20, 264], "text": "0 CPU, 1 debug module, 2 DMA, 3 Ethernet", "size": 10, "color": "grey"}]}

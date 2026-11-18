@@ -1,0 +1,22 @@
+{"size": [1110, 420],
+ "boxes": [
+  {"box": [20, 10, 300, 70], "title": "C test program", "lines": ["tb/verilator/c_tests/<test>.c → +sram=", "boot_rom.S → +rom= · check() → UART0", "riscv64-unknown-elf-gcc"], "color": "violet"},
+  {"box": [400, 10, 310, 70], "title": "tb_top", "lines": ["clock and reset · JTAG debugger (+jtag_test)", "[TOP] VERDICT: PASS / FAIL"], "color": "violet"},
+  {"box": [790, 10, 300, 70], "title": "Makefile", "lines": ["make sim / make regress", "results/<sim>/<test>/sim.log", "summary: test, PASS/FAIL, cycles"], "color": "grey"},
+  {"box": [40, 150, 1030, 92], "title": "DUT: adr_soc_top (RTL, or the Yosys gate netlist with NETLIST=1)", "lines": ["CVA6 boots from the boot ROM, runs the test from SRAM, programs the blocks through their registers and checks the results itself", "UART0 · UART1 · GPIO · PWM · SPI · QSPI · I2C · Ethernet SerDes · USB · ADC · OTP · JTAG · boot pins"], "color": "grey"},
+  {"box": [40, 300, 150, 92], "title": "UART0 decoder", "lines": ["prints the log", "EOT / NAK → RESULT", "cycle count, timeout"], "color": "blue"},
+  {"box": [205, 300, 150, 92], "title": "SPI / QSPI", "lines": ["2 serial memories", "ID, read, write", "1 or 4 lines"], "color": "blue"},
+  {"box": [370, 300, 150, 92], "title": "I2C", "lines": ["wired-AND bus", "device at 0x50"], "color": "blue"},
+  {"box": [535, 300, 150, 92], "title": "USB host", "lines": ["full speed", "reset, SOF, SETUP,", "OUT, IN"], "color": "blue"},
+  {"box": [700, 300, 150, 92], "title": "OTP · ADC", "lines": ["OTP macro model", "ADC comparator", "per channel level"], "color": "blue"},
+  {"box": [865, 300, 205, 92], "title": "Loopbacks", "lines": ["UART1 TX → RX · PWM → GPIO", "GPIO out → GPIO in", "Ethernet SerDes TX → RX"], "color": "green"}],
+ "frame": {"box": [20, 115, 1070, 295], "title": "tb_adr_soc: the board"},
+ "arrows": [
+  {"points": [[320, 45], [400, 45]], "label": "loaded at time 0", "at": [322, 38]},
+  {"points": [[555, 80], [555, 150]], "both": true, "label": "JTAG, clock, reset", "at": [565, 100]},
+  {"points": [[115, 242], [115, 300]], "both": true},
+  {"points": [[280, 242], [280, 300]], "both": true},
+  {"points": [[445, 242], [445, 300]], "both": true},
+  {"points": [[610, 242], [610, 300]], "both": true},
+  {"points": [[775, 242], [775, 300]], "both": true},
+  {"points": [[967, 242], [967, 300]], "both": true}]}

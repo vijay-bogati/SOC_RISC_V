@@ -1,0 +1,28 @@
+
+ADR SoC PWM and watchdog test
+  PASS  PWM outputs are low before starting
+  PASS  all 8 PWM outputs have their own duty cycle
+  PASS  stopped PWM timer holds its count
+  PASS  PWM prescaler slows the count
+  PASS  each PWM timer event reaches its own PLIC source
+  PASS  watchdog is off after reset
+  PASS  load value reads back
+  PASS  disabled watchdog does not count
+  PASS  enabled watchdog counts down
+  PASS  wrong key does not reload
+  PASS  correct key reloads
+  PASS  regular kicks prevent expiry
+  PASS  expiry raises the watchdog interrupt
+  PASS  writing status clears expiry
+All checks passed
+
+ADR SoC PWM and watchdog test
+  PASS  watchdog reset restarted the program from the boot ROM
+  PASS  first boot reached the reset step
+  PASS  watchdog registers were reset
+  PASS  first boot checks passed
+All checks passed
+
+[TB] RESULT: PASS (561025 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

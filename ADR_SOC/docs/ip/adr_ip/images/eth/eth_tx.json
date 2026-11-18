@@ -1,0 +1,45 @@
+{
+ "title": "Transmit: TX done means the frame left memory, not that it left the line",
+ "cycles": 12,
+ "signals": [
+  {
+   "name": "TX_START write",
+   "wave": "10.........."
+  },
+  {
+   "name": "STATUS.tx_busy",
+   "wave": "01......0..."
+  },
+  {
+   "name": "AXI reads (initiator 3)",
+   "wave": "x.====x.....",
+   "data": [
+    "burst",
+    "burst",
+    "...",
+    "last"
+   ]
+  },
+  {
+   "name": "STATUS.tx_done / irq",
+   "wave": "0.......1..."
+  },
+  {
+   "name": "MAC TX FIFO",
+   "wave": "x.=.....=..x",
+   "data": [
+    "frame written",
+    "frame read out"
+   ]
+  },
+  {
+   "name": "serdes_tx (tx_clk)",
+   "wave": "x.......===x",
+   "data": [
+    "preamble",
+    "frame",
+    "FCS"
+   ]
+  }
+ ]
+}

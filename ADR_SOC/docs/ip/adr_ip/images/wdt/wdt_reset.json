@@ -1,0 +1,12 @@
+{"title": "Second expiry with STATUS not cleared (derived)",
+ "cycles": 10,
+ "signals": [
+  {"name": "clk_i", "wave": "pppppppppp"},
+  {"name": "count_q", "wave": "====......", "data": ["1", "0", "L", "0xFFFFFFFF"]},
+  {"name": "expired_q", "wave": "1..0......"},
+  {"name": "reset_req_o", "wave": "0.10......"},
+  {"name": "sysctrl system_reset_req_o", "wave": "0..10....."},
+  {"name": "sys_rst_n (adr_rst_gen)", "wave": "1..0....1."},
+  {"name": "sysctrl RESET_CAUSE[2]", "wave": "0..1......"}
+ ],
+ "marks": [{"at": 3, "text": "reset asserted"}, {"at": 8, "text": "released"}]}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 270" width="840" height="270">
+<rect width="840" height="270" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1f2937"/></marker><marker id="b" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="#1f2937"/></marker></defs>
+<rect x="170" y="14" width="450" height="240" rx="6" fill="#f9fafb" stroke="#6b7280" stroke-dasharray="5,3"/>
+<text x="180" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="#1f2937" font-weight="bold">adr_otp_ctrl</text>
+<rect x="190" y="50" width="160" height="110" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="270.0" y="88.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Registers</text>
+<text x="270.0" y="103.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">ADDR, WDATA, RDATA</text>
+<text x="270.0" y="117.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">CMD, KEY, STATUS,</text>
+<text x="270.0" y="131.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">IRQ_EN</text>
+<rect x="390" y="50" width="210" height="110" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="495.0" y="81.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Command checker</text>
+<text x="495.0" y="96.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">address 0..31</text>
+<text x="495.0" y="110.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">CMD 1 = read, 2 = program</text>
+<text x="495.0" y="124.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">program needs the key</text>
+<text x="495.0" y="138.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">key used by one command</text>
+<rect x="390" y="180" width="210" height="56" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="495.0" y="205.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Macro handshake</text>
+<text x="495.0" y="220.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">req pulse, wait for done</text>
+<polyline points="20,100 188,100" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="24" y="92" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">APB</text>
+<polyline points="350,100 388,100" fill="none" stroke="#1f2937" stroke-width="1.3" marker-end="url(#a)"/>
+<polyline points="495,160 495,178" fill="none" stroke="#1f2937" stroke-width="1.3" marker-end="url(#a)"/>
+<polyline points="600,190 820,190" fill="none" stroke="#1f2937" stroke-width="1.3" marker-end="url(#a)"/>
+<text x="612" y="182" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">macro_req_o, we_o, addr_o, wdata_o</text>
+<polyline points="820,222 602,222" fill="none" stroke="#1f2937" stroke-width="1.3" marker-end="url(#a)"/>
+<text x="612" y="214" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">macro_rdata_i, macro_done_i</text>
+<polyline points="600,80 820,80" fill="none" stroke="#1f2937" stroke-width="1.3" marker-end="url(#a)"/>
+<text x="640" y="72" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">irq_o: PLIC 25</text>
+<text x="612" y="246" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#6b7280">OTP macro outside the chip model (bench model)</text>
+</svg>

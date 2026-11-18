@@ -1,0 +1,16 @@
+{"size": [840, 270],
+ "frame": {"box": [170, 14, 450, 240], "title": "adr_otp_ctrl"},
+ "boxes": [
+  {"box": [190, 50, 160, 110], "title": "Registers", "lines": ["ADDR, WDATA, RDATA", "CMD, KEY, STATUS,", "IRQ_EN"], "color": "blue"},
+  {"box": [390, 50, 210, 110], "title": "Command checker", "lines": ["address 0..31", "CMD 1 = read, 2 = program", "program needs the key", "key used by one command"], "color": "amber"},
+  {"box": [390, 180, 210, 56], "title": "Macro handshake", "lines": ["req pulse, wait for done"], "color": "green"}
+ ],
+ "arrows": [
+  {"points": [[20, 100], [188, 100]], "label": "APB", "at": [24, 92], "both": true},
+  {"points": [[350, 100], [388, 100]]},
+  {"points": [[495, 160], [495, 178]]},
+  {"points": [[600, 190], [820, 190]], "label": "macro_req_o, we_o, addr_o, wdata_o", "at": [612, 182]},
+  {"points": [[820, 222], [602, 222]], "label": "macro_rdata_i, macro_done_i", "at": [612, 214]},
+  {"points": [[600, 80], [820, 80]], "label": "irq_o: PLIC 25", "at": [640, 72]}
+ ],
+ "texts": [{"at": [612, 246], "text": "OTP macro outside the chip model (bench model)", "size": 10, "color": "grey"}]}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240">
+<rect width="880" height="240" fill="#ffffff"/>
+<rect x="12" y="30" width="126" height="84" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="75.0" y="68.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Power-on reset</text>
+<text x="75.0" y="83.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">released</text>
+<polyline points="138,72 157,72" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="157,72 148.0,76.5 148.0,67.5" fill="#475569"/>
+<rect x="157" y="30" width="126" height="84" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="220.0" y="61.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">sys_rst_n</text>
+<text x="220.0" y="76.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">released after</text>
+<text x="220.0" y="91.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">4 clocks</text>
+<polyline points="283,72 302,72" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="302,72 293.0,76.5 293.0,67.5" fill="#475569"/>
+<rect x="302" y="30" width="126" height="84" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="365.0" y="61.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">CPU fetches</text>
+<text x="365.0" y="76.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">0x0001_0000</text>
+<text x="365.0" y="91.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">c_tests/boot_rom.S</text>
+<polyline points="428,72 447,72" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="447,72 438.0,76.5 438.0,67.5" fill="#475569"/>
+<rect x="447" y="30" width="126" height="84" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="510.0" y="68.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Jump to</text>
+<text x="510.0" y="83.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">0x8000_0000</text>
+<polyline points="573,72 592,72" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="592,72 583.0,76.5 583.0,67.5" fill="#475569"/>
+<rect x="592" y="30" width="126" height="84" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="655.0" y="61.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">c_tests/crt0.S</text>
+<text x="655.0" y="76.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">mtvec, FP on, .bss,</text>
+<text x="655.0" y="91.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">fcsr, stack</text>
+<polyline points="718,72 737,72" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="737,72 728.0,76.5 728.0,67.5" fill="#475569"/>
+<rect x="737" y="30" width="126" height="84" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="800.0" y="68.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">main()</text>
+<text x="800.0" y="83.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">in SRAM</text>
+<rect x="12" y="146" width="851" height="62" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="437.5" y="173.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">In simulation only: the testbench loads the SRAM image at time zero.</text>
+<text x="437.5" y="188.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">The boot ROM has no loader yet, so a real chip could not boot with it. BOOT_PINS can be read, but nothing acts on it.</text>
+</svg>

@@ -1,0 +1,305 @@
+{
+ "size": [
+  880,
+  420
+ ],
+ "frame": {
+  "box": [
+   130,
+   14,
+   600,
+   390
+  ],
+  "title": "adr_periph_subsys"
+ },
+ "boxes": [
+  {
+   "box": [
+    150,
+    46,
+    140,
+    40
+   ],
+   "title": "i_timer",
+   "lines": [
+    "apb_timer, 8 ch"
+   ],
+   "color": "blue"
+  },
+  {
+   "box": [
+    150,
+    94,
+    140,
+    40
+   ],
+   "title": "i_pwm",
+   "lines": [
+    "apb_adv_timer"
+   ],
+   "color": "blue"
+  },
+  {
+   "box": [
+    150,
+    142,
+    140,
+    40
+   ],
+   "title": "i_aes",
+   "lines": [
+    "adr_aes"
+   ],
+   "color": "green"
+  },
+  {
+   "box": [
+    150,
+    190,
+    140,
+    40
+   ],
+   "title": "i_adc",
+   "lines": [
+    "adr_adc_ctrl"
+   ],
+   "color": "green"
+  },
+  {
+   "box": [
+    310,
+    46,
+    100,
+    184
+   ],
+   "title": "Clock gates",
+   "lines": [
+    "timer (bit 8)",
+    "pwm (bit 6)",
+    "aes (bit 9)",
+    "adc (bit 10)"
+   ],
+   "color": "amber"
+  },
+  {
+   "box": [
+    450,
+    46,
+    130,
+    40
+   ],
+   "title": "i_wdt",
+   "lines": [
+    "adr_wdt"
+   ],
+   "color": "green"
+  },
+  {
+   "box": [
+    450,
+    94,
+    130,
+    40
+   ],
+   "title": "i_bus_monitor",
+   "lines": [
+    "adr_bus_monitor"
+   ],
+   "color": "green"
+  },
+  {
+   "box": [
+    450,
+    142,
+    130,
+    40
+   ],
+   "title": "i_sysctrl",
+   "lines": [
+    "adr_sysctrl"
+   ],
+   "color": "green"
+  },
+  {
+   "box": [
+    450,
+    190,
+    130,
+    40
+   ],
+   "title": "i_otp",
+   "lines": [
+    "adr_otp_ctrl"
+   ],
+   "color": "green"
+  },
+  {
+   "box": [
+    450,
+    238,
+    130,
+    40
+   ],
+   "title": "i_aon_timer",
+   "lines": [
+    "power-on reset"
+   ],
+   "color": "violet"
+  },
+  {
+   "box": [
+    150,
+    270,
+    260,
+    50
+   ],
+   "title": "Synchronizers",
+   "lines": [
+    "boot_pins_i (4 x sync), adc_compare_i (sync)"
+   ],
+   "color": "grey"
+  }
+ ],
+ "arrows": [
+  {
+   "points": [
+    [
+     20,
+     60
+    ],
+    [
+     148,
+     60
+    ]
+   ],
+   "label": "APB slots 3,8-12,15-17",
+   "at": [
+    20,
+    52
+   ]
+  },
+  {
+   "points": [
+    [
+     20,
+     400
+    ],
+    [
+     360,
+     400
+    ],
+    [
+     360,
+     232
+    ]
+   ],
+   "label": "clk_en_i from i_sysctrl",
+   "at": [
+    20,
+    392
+   ]
+  },
+  {
+   "points": [
+    [
+     580,
+     162
+    ],
+    [
+     860,
+     162
+    ]
+   ],
+   "label": "system_reset_req_o, clk_en_o",
+   "at": [
+    600,
+    154
+   ]
+  },
+  {
+   "points": [
+    [
+     580,
+     66
+    ],
+    [
+     620,
+     66
+    ],
+    [
+     620,
+     154
+    ]
+   ],
+   "dashed": true
+  },
+  {
+   "points": [
+    [
+     20,
+     345
+    ],
+    [
+     600,
+     345
+    ],
+    [
+     600,
+     280
+    ]
+   ],
+   "label": "rtc_i",
+   "at": [
+    20,
+    337
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "at": [
+    600,
+    300
+   ],
+   "text": "IRQs: timer 4-11, PWM 15-18, WDT 19,",
+   "size": 10,
+   "color": "grey"
+  },
+  {
+   "at": [
+    600,
+    314
+   ],
+   "text": "AES 20, bus monitor 21, ADC 24,",
+   "size": 10,
+   "color": "grey"
+  },
+  {
+   "at": [
+    600,
+    328
+   ],
+   "text": "OTP 25, AON 26",
+   "size": 10,
+   "color": "grey"
+  },
+  {
+   "at": [
+    20,
+    250
+   ],
+   "text": "Also: pwm_o, adc pins, otp macro pins,",
+   "size": 10,
+   "color": "grey"
+  },
+  {
+   "at": [
+    20,
+    264
+   ],
+   "text": "bus error inputs to i_bus_monitor",
+   "size": 10,
+   "color": "grey"
+  }
+ ]
+}

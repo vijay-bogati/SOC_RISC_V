@@ -1,0 +1,14 @@
+{"title": "Kick: APB write of the key, zero wait states",
+ "cycles": 8,
+ "signals": [
+  {"name": "clk_i", "wave": "pppppppp"},
+  {"name": "psel_i", "wave": "01.0...."},
+  {"name": "penable_i", "wave": "0.10...."},
+  {"name": "pwrite_i", "wave": "x1.x...."},
+  {"name": "paddr_i[4:0]", "wave": "x=.x....", "data": ["0x0C"]},
+  {"name": "pwdata_i", "wave": "x=.x....", "data": ["0x5AFEC0DE"]},
+  {"name": "pready_o", "wave": "1......."},
+  {},
+  {"name": "count_q", "wave": "========", "data": ["40", "39", "38", "LOAD", "L-1", "L-2", "L-3", "L-4"]}
+ ],
+ "marks": [{"at": 3, "text": "reloaded"}]}

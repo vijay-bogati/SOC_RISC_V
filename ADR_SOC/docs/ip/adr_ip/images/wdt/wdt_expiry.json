@@ -1,0 +1,10 @@
+{"title": "First expiry (enabled, LOAD = L)",
+ "cycles": 7,
+ "signals": [
+  {"name": "clk_i", "wave": "ppppppp"},
+  {"name": "count_q", "wave": "=======", "data": ["2", "1", "0", "L", "L-1", "L-2", "L-3"]},
+  {"name": "expired_q", "wave": "0..1..."},
+  {"name": "irq_o", "wave": "0..1..."},
+  {"name": "reset_req_o", "wave": "0......"}
+ ],
+ "marks": [{"at": 3, "text": "expiry, LOAD + 1 clocks after reload"}]}

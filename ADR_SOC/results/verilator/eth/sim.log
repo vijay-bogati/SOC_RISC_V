@@ -1,0 +1,25 @@
+
+ADR SoC Ethernet test
+  PASS  registers start idle
+  PASS  the receive side locks onto the blocks
+  PASS  a frame loops back
+  PASS  no bus errors on a good frame
+  PASS  the received length is right
+  PASS  the received data is right
+  PASS  status clears
+  PASS  an unaligned frame loops back
+  PASS  a short frame is padded to 60 bytes
+  PASS  a small buffer cuts the frame at its end
+  PASS  with receive off, nothing is received
+  PASS  receive done raises the interrupt
+  PASS  a bad transmit address reports an error
+  PASS  the bus monitor records the read error
+  PASS  a frame sent after a bus error still arrives
+  PASS  a bad receive address reports an error
+  PASS  the bus monitor records the write error
+  PASS  it still works after errors
+All checks passed
+
+[TB] RESULT: PASS (287990 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

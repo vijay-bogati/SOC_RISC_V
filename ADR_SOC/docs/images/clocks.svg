@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 490" width="880" height="490">
+<rect width="880" height="490" fill="#ffffff"/>
+<rect x="14" y="30" width="96" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="62.0" y="48.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">clk_i</text>
+<text x="62.0" y="63.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">input pin</text>
+<rect x="14" y="250" width="96" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="62.0" y="268.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">rtc_i</text>
+<text x="62.0" y="283.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">input pin</text>
+<rect x="14" y="316" width="96" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="62.0" y="334.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">jtag_tck_i</text>
+<text x="62.0" y="349.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">input pin</text>
+<rect x="14" y="380" width="96" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="62.0" y="398.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">eth_tx_clk_i</text>
+<text x="62.0" y="413.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">eth_rx_clk_i</text>
+<rect x="192" y="380" width="670" height="44" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="527.0" y="398.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Ethernet MAC</text>
+<text x="527.0" y="413.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Asynchronous FIFOs cross to clk_i</text>
+<polyline points="110,402 190,402" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="190,402 181.0,406.5 181.0,397.5" fill="#475569"/>
+<rect x="14" y="436" width="96" height="44" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="62.0" y="454.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">usb_clk_i</text>
+<text x="62.0" y="469.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">input pin</text>
+<rect x="192" y="436" width="670" height="44" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="527.0" y="454.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">USB device</text>
+<text x="527.0" y="469.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">tlul_fifo_async carries register accesses across from clk_i</text>
+<polyline points="110,458 190,458" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="190,458 181.0,462.5 181.0,453.5" fill="#475569"/>
+<polyline points="110,52 190,52" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="190,52 181.0,56.5 181.0,47.5" fill="#475569"/>
+<rect x="192" y="14" width="670" height="76" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="527.0" y="41.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Always running on clk_i</text>
+<text x="527.0" y="56.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">CPU, fabric, memories, CLINT, debug module, UART0, watchdog, bus monitor,</text>
+<text x="527.0" y="71.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">system control, DMA, pin mux, OTP, always-on timer, PLIC</text>
+<polyline points="150,52 150,150 190,150" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="190,150 181.0,154.5 181.0,145.5" fill="#475569"/>
+<rect x="192" y="116" width="210" height="68" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="297.0" y="139.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">9 pulp_clock_gating</text>
+<text x="297.0" y="154.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">cells, enabled by</text>
+<text x="297.0" y="169.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">CLK_EN bits 0 to 10</text>
+<polyline points="402,150 460,150" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="460,150 451.0,154.5 451.0,145.5" fill="#475569"/>
+<rect x="462" y="116" width="400" height="68" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="662.0" y="139.2" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Gated clocks</text>
+<text x="662.0" y="154.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">UART1, SPI, QSPI, I2C, PWM,</text>
+<text x="662.0" y="169.2" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">GPIO, Timer, AES, ADC</text>
+<polyline points="110,272 190,272" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="190,272 181.0,276.5 181.0,267.5" fill="#475569"/>
+<rect x="192" y="244" width="670" height="56" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="527.0" y="268.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Sampled, not used as a clock</text>
+<text x="527.0" y="283.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Two-stage synchronizer and edge detector, in each of the CLINT (mtime) and the always-on timer</text>
+<polyline points="110,338 190,338" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="190,338 181.0,342.5 181.0,333.5" fill="#475569"/>
+<rect x="192" y="312" width="210" height="52" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="297.0" y="334.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">JTAG TAP</text>
+<text x="297.0" y="349.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">inside dmi_jtag</text>
+<polyline points="402,338 460,338" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="460,338 451.0,342.5 451.0,333.5" fill="#475569"/>
+<text x="431" y="330" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#64748b">DMI</text>
+<rect x="462" y="312" width="400" height="52" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="662.0" y="334.7" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">Debug module on clk_i</text>
+<text x="662.0" y="349.7" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">dmi_jtag does the crossing</text>
+<text x="192" y="212" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="start" fill="#64748b">No PLL, clock divider, clock mux or clock monitor exists.</text>
+</svg>

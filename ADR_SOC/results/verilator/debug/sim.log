@@ -1,0 +1,42 @@
+  PASS  JTAG: IDCODE reads the configured value
+  PASS  JTAG: DTM version is 0.13
+  PASS  JTAG: DMI address is 7 bits
+
+ADR S  PASS  JTAG: debug module is version 0.13
+oC   PASS  JTAG: debug module active reads back
+debug test
+  PASS  JTAG: system bus reads a value the CPU wrote
+  PASS  JTAG: CPU is running before halt
+  PASS  JTAG: system bus reads the spin address
+  PASS  JTAG: system bus write completes
+  PASS  JTAG: system bus write reads back
+  PASS  JTAG: CPU halts on request
+  PASS  JTAG: abstract command reads a register
+  PASS  JTAG: dpc points at the spin loop
+  PASS  JTAG: abstract command writes a register
+  PASS  JTAG: written register reads back
+  PASS  JTAG: program buffer runs
+  PASS  JTAG: program buffer changed the register
+  PASS  JTAG: bad abstract command reports cmderr
+  PASS  JTAG: cmderr clears
+  PASS  JTAG: register write for resume
+  P  PASS  JTAG: CPU acknowledges resume
+ASS    PASS  JTAG: CPU is running after resume
+debugger's register write released the program
+  PASS  program buffer result is visible after resume
+  PASS  system bus write reached SRAM
+All checks passed
+  PASS  JTAG: program finishes first boot
+
+AD  PASS  JTAG: debug link survives the SoC reset
+  PASS  JTAG: no DMI scan reported an error
+[JTAG] 0 failed
+R SoC debug test
+  PASS  debug reset restarted the program from the boot ROM
+  PASS  first boot checks passed
+  PASS  reset cause reports the debug module
+All checks passed
+
+[TB] RESULT: PASS (202132 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

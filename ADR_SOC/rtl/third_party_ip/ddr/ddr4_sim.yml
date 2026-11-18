@@ -1,0 +1,19 @@
+# Settings for scripts/gen_ddr.py. SimDDR4Small is defined in that script.
+# One 8-bit byte group gives a native width of 64 bits, the same as the bus. With a wider native
+# word, LiteDRAM's width converter holds a lone access until the next one arrives, and hangs.
+{
+    "cpu":             "None",
+    "memtype":         "DDR4",
+    "sdram_module":    "SimDDR4Small",
+    "sdram_module_nb": 1,
+    "sdram_rank_nb":   1,
+    "sdram_phy":       "USDDRPHY",
+    "cmd_latency":     1,
+    "sys_clk_freq":    100e6,
+    "input_clk_freq":  100e6,
+    "iodelay_clk_freq": 200e6,
+    "cmd_buffer_depth": 8,
+    "user_ports": {
+        "axi_0": { "type": "axi", "id_width": 6, "block_until_ready": False },
+    },
+}

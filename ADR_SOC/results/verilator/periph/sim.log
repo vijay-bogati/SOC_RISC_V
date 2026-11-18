@@ -1,0 +1,38 @@
+
+ADR SoC peripheral test
+  PASS  UART1 receives each byte it sends
+  PASS  UART1 FIFOs keep bytes in order
+  PASS  UART1 receive FIFO empties
+  PASS  UART1 receive interrupt taken
+  PASS  UART1 interrupt uses its PLIC source
+  PASS  UART1 handler read the byte
+  PASS  GPIO output register reads back
+  PASS  pins set as inputs do not drive
+  PASS  GPIO direction reads back
+  PASS  output value reaches the input pins
+  PASS  a new output value reaches the input pins
+  PASS  set register sets only named pins
+  PASS  clear register clears only named pins
+  PASS  rising-edge mode fires on a rise
+  PASS  rising-edge mode ignores a fall
+  PASS  falling-edge mode fires on a fall
+  PASS  falling-edge mode ignores a rise
+  PASS  both-edge mode fires on a rise
+  PASS  both-edge mode fires on a fall
+  PASS  status register names the pin
+  PASS  reading status clears it
+  PASS  stopped timer does not count
+  PASS  enabled timer counts
+  PASS  prescaler slows the count
+  PASS  compare register reads back
+  PASS  all 8 timers interrupt on compare, each on its own source
+  PASS  timer interrupts on overflow
+  PASS  timer restarts after overflow
+  PASS  higher priority claims first (GPIO over UART1)
+  PASS  higher priority claims first (UART1 over GPIO)
+  PASS  equal priority claims the lower source number
+All checks passed
+
+[TB] RESULT: PASS (491335 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

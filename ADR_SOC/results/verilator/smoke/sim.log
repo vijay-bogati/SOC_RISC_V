@@ -1,0 +1,25 @@
+
+ADR SoC smoke test
+  PASS  64-bit multiply
+  PASS  64-bit divide
+  PASS  remainder
+  PASS  byte write/read
+  PASS  byte lanes
+  PASS  halfword merge
+  PASS  cache refill across 64 KiB
+  PASS  amoadd.d
+  PASS  amoswap.w
+  PASS  lr.d/sc.d
+  PASS  double multiply
+  PASS  float divide
+  PASS  float to int
+  PASS  misa reports RV64IMAFDC, S and U
+  PASS  unmapped load gets error-target data, no hang
+  PASS  empty peripheral slot gets error data, no hang
+  PASS  illegal instruction traps
+  PASS  PMP-protected load traps with access fault
+All checks passed
+
+[TB] RESULT: PASS (218689 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

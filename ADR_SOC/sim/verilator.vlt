@@ -1,0 +1,17 @@
+/***************************************************************
+ Project name                  : ADR SoC
+ File Name                     : verilator.vlt
+ Module/class Name             : Verilator configuration
+ Author                        : Vijay Bogati
+ Description                   : Verilator lint waivers for the third-party folders
+***************************************************************/
+
+// Lint waivers for Verilator. Upstream's own rules match its original folders, so the blocks that
+// moved out of them need these to keep the same treatment.
+
+`verilator_config
+
+lint_off -file "*/third_party_ip/common/*"
+lint_off -file "*/third_party_ip/plic/*"
+lint_off -file "*/third_party_ip/clint/*"
+lint_off -file "*/third_party_ip/debug/*"

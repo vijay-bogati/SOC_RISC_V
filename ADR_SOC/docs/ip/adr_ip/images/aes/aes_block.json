@@ -1,0 +1,23 @@
+{"size": [860, 350],
+ "frame": {"box": [150, 14, 690, 320], "title": "adr_aes"},
+ "boxes": [
+  {"box": [170, 44, 170, 120], "title": "Register interface", "lines": ["CTRL, STATUS, IRQ_EN", "KEY[0-7] (WO)", "IN[0-3]", "OUT[0-3] (RO)"], "color": "blue"},
+  {"box": [170, 190, 170, 70], "title": "Control FSM", "lines": ["Idle -> Expand -> Rounds", "-> Idle (done)"], "color": "amber"},
+  {"box": [380, 44, 200, 90], "title": "Key schedule", "lines": ["60 x 32-bit words", "one word per clock", "1 S-box (aes_sbox)"], "color": "violet"},
+  {"box": [380, 170, 200, 120], "title": "Round datapath", "lines": ["128-bit state register", "SubBytes: 4 aes_sbox", "InvSubBytes: 4 aes_inv_sbox", "(Inv)ShiftRows, (Inv)MixColumns", "AddRoundKey: one round per clock"], "color": "green"},
+  {"box": [620, 190, 190, 50], "title": "done_q", "lines": ["STATUS.done, W1C"], "color": "red"}
+ ],
+ "arrows": [
+  {"points": [[20, 100], [168, 100]], "label": "APB", "at": [24, 92], "both": true},
+  {"points": [[340, 80], [378, 80]], "label": "key", "at": [344, 72]},
+  {"points": [[480, 134], [480, 168]], "label": "round key", "at": [486, 154]},
+  {"points": [[340, 140], [360, 140], [360, 210], [378, 210]], "label": "IN", "at": [344, 200]},
+  {"points": [[378, 270], [355, 270], [355, 150], [342, 150]], "label": "OUT", "at": [344, 290]},
+  {"points": [[255, 190], [255, 166]]},
+  {"points": [[580, 215], [618, 215]]},
+  {"points": [[810, 215], [840, 215]]}
+ ],
+ "texts": [{"at": [620, 268], "text": "irq_o = done AND IRQ_EN", "size": 10},
+           {"at": [620, 282], "text": "PLIC source 20", "size": 10, "color": "grey"},
+           {"at": [20, 300], "text": "clk_i: system clock gated by CLK_EN bit 9", "size": 10, "color": "grey"},
+           {"at": [20, 314], "text": "rst_ni: system reset", "size": 10, "color": "grey"}]}

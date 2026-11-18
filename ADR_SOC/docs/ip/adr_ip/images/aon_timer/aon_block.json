@@ -1,0 +1,19 @@
+{"size": [820, 260],
+ "frame": {"box": [170, 14, 470, 230], "title": "adr_aon_timer (power-on reset domain)"},
+ "boxes": [
+  {"box": [190, 50, 130, 70], "title": "RTC sync", "lines": ["2 flops + edge", "detect: tick"], "color": "grey"},
+  {"box": [350, 50, 130, 70], "title": "64-bit counter", "lines": ["+1 per tick", "while enabled"], "color": "green"},
+  {"box": [350, 150, 130, 70], "title": "Compare", "lines": ["COUNT == CMP", "at a tick"], "color": "amber"},
+  {"box": [500, 150, 120, 70], "title": "match_q", "lines": ["STATUS.match", "W1C"], "color": "red"},
+  {"box": [500, 50, 120, 70], "title": "Registers", "lines": ["CTRL, COUNT,", "CMP, STATUS"], "color": "blue"}
+ ],
+ "arrows": [
+  {"points": [[20, 85], [188, 85]], "label": "rtc_i (6.25 MHz in sim)", "at": [24, 77]},
+  {"points": [[320, 85], [348, 85]]},
+  {"points": [[415, 120], [415, 148]]},
+  {"points": [[480, 185], [498, 185]]},
+  {"points": [[800, 85], [622, 85]], "label": "APB", "at": [700, 77], "both": true},
+  {"points": [[620, 185], [800, 185]], "label": "irq_o: PLIC 26", "at": [660, 177]}
+ ],
+ "texts": [{"at": [20, 200], "text": "clk_i: system clock, not gated", "size": 10, "color": "grey"},
+           {"at": [20, 214], "text": "por_rst_ni: power-on reset only", "size": 10, "color": "grey"}]}

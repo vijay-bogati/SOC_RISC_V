@@ -1,0 +1,25 @@
+{"size": [880, 400],
+ "frame": {"box": [130, 14, 600, 370], "title": "adr_lsio_subsys"},
+ "boxes": [
+  {"box": [150, 50, 130, 44], "title": "i_uart0", "lines": ["apb_uart, always on"], "color": "blue"},
+  {"box": [150, 104, 130, 44], "title": "i_uart1", "lines": ["apb_uart"], "color": "blue"},
+  {"box": [150, 158, 130, 44], "title": "i_gpio", "lines": ["apb_gpio, 16 pins"], "color": "blue"},
+  {"box": [150, 212, 130, 44], "title": "i_spi", "lines": ["apb_spi_master"], "color": "blue"},
+  {"box": [150, 266, 130, 44], "title": "i_qspi", "lines": ["apb_spi_master, quad"], "color": "blue"},
+  {"box": [150, 320, 130, 44], "title": "i_i2c", "lines": ["adr_i2c"], "color": "green"},
+  {"box": [320, 104, 110, 260], "title": "Clock gates", "lines": ["pulp_clock_gating", "", "i_gate_uart1 (bit 0)", "i_gate_gpio (bit 7)", "i_gate_spi (bit 1)", "i_gate_qspi (bit 3)", "i_gate_i2c (bit 4)"], "color": "amber"},
+  {"box": [470, 140, 120, 90], "title": "i_pinmux", "lines": ["adr_pinmux", "16 pads x 3", "always on"], "color": "green"}
+ ],
+ "arrows": [
+  {"points": [[20, 60], [148, 60]], "label": "APB slots 0,1,2,5,6,7,14", "at": [20, 52]},
+  {"points": [[20, 380], [375, 380], [375, 366]], "label": "clk_en_i (CLK_EN)", "at": [20, 372]},
+  {"points": [[280, 180], [468, 180]], "label": "GPIO out/dir", "at": [290, 172]},
+  {"points": [[20, 250], [110, 250], [110, 200], [468, 200]], "label": "pwm_i (func 1)", "at": [20, 242]},
+  {"points": [[590, 185], [860, 185]], "label": "gpio_out_o, gpio_dir_o", "at": [600, 177]},
+  {"points": [[280, 72], [860, 72]], "label": "uart0 pins", "at": [600, 64]},
+  {"points": [[430, 126], [860, 126]], "label": "uart1 pins", "at": [600, 118]},
+  {"points": [[430, 234], [860, 234]], "label": "spi pins", "at": [600, 226]},
+  {"points": [[430, 288], [860, 288]], "label": "qspi pins", "at": [600, 280]},
+  {"points": [[430, 342], [860, 342]], "label": "i2c pins", "at": [600, 334]}
+ ],
+ "texts": [{"at": [600, 360], "text": "IRQs: UART0 1, UART1 2, GPIO 3, SPI 12, QSPI 14, I2C 23", "size": 10, "color": "grey"}]}

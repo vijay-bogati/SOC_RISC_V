@@ -1,0 +1,9 @@
+# Build and run outputs (the curated sample results in ADR_SOC/results/ are kept)
+*.dasm
+*.vcd
+obj_dir/
+__pycache__/
+*.pyc
+*.swp
+ADR_SOC/syn/out/
+ADR_SOC/results/*/*/trace_hart_*

@@ -1,0 +1,64 @@
+
+ADR SoC atomics outside SRAM and DDR4 (NEG-06..NEG-10)
+  PASS  NEG-06 APB system control SCRATCH1: known value in place
+  PASS  NEG-06 APB system control SCRATCH1: amoswap returns 0 (error R beat)
+  PASS  NEG-06 APB system control SCRATCH1: amoswap leaves the target unchanged
+  PASS  NEG-06 APB system control SCRATCH1: amoadd returns 0 (error R beat)
+  PASS  NEG-06 APB system control SCRATCH1: amoadd leaves the target unchanged
+  PASS  NEG-06 APB system control SCRATCH1: amoor returns 0 (error R beat)
+  PASS  NEG-06 APB system control SCRATCH1: amoor leaves the target unchanged
+  PASS  NEG-06 APB system control SCRATCH1: bus monitor: CPU write error recorded
+  PASS  NEG-06 APB system control SCRATCH1: bus monitor: CPU read error recorded (R beat)
+  PASS  NEG-06 APB system control SCRATCH1: bus monitor: no other initiator's error
+  PASS  NEG-06 APB system control SCRATCH1: bus monitor: address of the first AMO recorded
+  PASS  NEG-07 PLIC source 1 priority: known value in place
+  PASS  NEG-07 PLIC source 1 priority: amoswap returns 0 (error R beat)
+  PASS  NEG-07 PLIC source 1 priority: amoswap leaves the target unchanged
+  PASS  NEG-07 PLIC source 1 priority: amoadd returns 0 (error R beat)
+  PASS  NEG-07 PLIC source 1 priority: amoadd leaves the target unchanged
+  PASS  NEG-07 PLIC source 1 priority: amoor returns 0 (error R beat)
+  PASS  NEG-07 PLIC source 1 priority: amoor leaves the target unchanged
+  PASS  NEG-07 PLIC source 1 priority: bus monitor: CPU write error recorded
+  PASS  NEG-07 PLIC source 1 priority: bus monitor: CPU read error recorded (R beat)
+  PASS  NEG-07 PLIC source 1 priority: bus monitor: no other initiator's error
+  PASS  NEG-07 PLIC source 1 priority: bus monitor: address of the first AMO recorded
+  PASS  NEG-08 boot ROM: known value in place
+  PASS  NEG-08 boot ROM: amoswap returns 0 (error R beat)
+  PASS  NEG-08 boot ROM: amoswap leaves the target unchanged
+  PASS  NEG-08 boot ROM: amoadd returns 0 (error R beat)
+  PASS  NEG-08 boot ROM: amoadd leaves the target unchanged
+  PASS  NEG-08 boot ROM: amoor returns 0 (error R beat)
+  PASS  NEG-08 boot ROM: amoor leaves the target unchanged
+  PASS  NEG-08 boot ROM: bus monitor: CPU write error recorded
+  PASS  NEG-08 boot ROM: bus monitor: CPU read error recorded (R beat)
+  PASS  NEG-08 boot ROM: bus monitor: no other initiator's error
+  PASS  NEG-08 boot ROM: bus monitor: address of the first AMO recorded
+  PASS  NEG-09 CLINT MTIMECMP: known value in place
+  PASS  NEG-09 CLINT MTIMECMP: amoswap returns 0 (error R beat)
+  PASS  NEG-09 CLINT MTIMECMP: amoswap leaves the target unchanged
+  PASS  NEG-09 CLINT MTIMECMP: amoadd returns 0 (error R beat)
+  PASS  NEG-09 CLINT MTIMECMP: amoadd leaves the target unchanged
+  PASS  NEG-09 CLINT MTIMECMP: amoor returns 0 (error R beat)
+  PASS  NEG-09 CLINT MTIMECMP: amoor leaves the target unchanged
+  PASS  NEG-09 CLINT MTIMECMP: bus monitor: CPU write error recorded
+  PASS  NEG-09 CLINT MTIMECMP: bus monitor: CPU read error recorded (R beat)
+  PASS  NEG-09 CLINT MTIMECMP: bus monitor: no other initiator's error
+  PASS  NEG-09 CLINT MTIMECMP: bus monitor: address of the first AMO recorded
+  PASS  NEG-10 debug memory data 0: held at 0 while the debug module is inactive
+  PASS  NEG-10 debug memory data 0: known value in place
+  PASS  NEG-10 debug memory data 0: amoswap returns 0 (error R beat)
+  PASS  NEG-10 debug memory data 0: amoswap leaves the target unchanged
+  PASS  NEG-10 debug memory data 0: amoadd returns 0 (error R beat)
+  PASS  NEG-10 debug memory data 0: amoadd leaves the target unchanged
+  PASS  NEG-10 debug memory data 0: amoor returns 0 (error R beat)
+  PASS  NEG-10 debug memory data 0: amoor leaves the target unchanged
+  PASS  NEG-10 debug memory data 0: bus monitor: CPU write error recorded
+  PASS  NEG-10 debug memory data 0: bus monitor: CPU read error recorded (R beat)
+  PASS  NEG-10 debug memory data 0: bus monitor: no other initiator's error
+  PASS  NEG-10 debug memory data 0: bus monitor: address of the first AMO recorded
+  PASS  SRAM amoadd.w still works after the errors
+All checks passed
+
+[TB] RESULT: PASS (1442879 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

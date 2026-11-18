@@ -1,0 +1,11 @@
+{"title": "RTC tick and compare match (CMP = N, enabled)",
+ "cycles": 10,
+ "signals": [
+  {"name": "clk_i", "wave": "pppppppppp"},
+  {"name": "rtc_i", "wave": "01.....0.."},
+  {"name": "rtc_sync_q[1]", "wave": "0.1......."},
+  {"name": "tick", "wave": "0.10......"},
+  {"name": "count_q", "wave": "=..=......", "data": ["N", "N+1"]},
+  {"name": "STATUS.match / irq_o", "wave": "0..1......"}
+ ],
+ "marks": [{"at": 3, "text": "match: COUNT was CMP at the tick"}]}

@@ -1,0 +1,36 @@
+
+ADR SoC system blocks test
+  PASS  first boot reports a power-on reset
+  PASS  scratch starts at zero
+  PASS  chip ID reads ADR1
+  PASS  version reads 1.0
+  PASS  boot pins read the testbench value
+  PASS  chip ID is read-only
+  PASS  no bus errors recorded after normal start-up
+  PASS  unmapped read sets the CPU read error bit
+  PASS  the address of the bad read is recorded
+  PASS  first error address is kept
+  PASS  writing 1 clears a status bit
+  PASS  unmapped write sets the CPU write error bit
+  PASS  the address of the bad write is recorded
+  PASS  an empty peripheral slot is also recorded
+  PASS  good accesses are not recorded
+  PASS  a bus error can raise an interrupt
+  PASS  the handler cleared the record
+  PASS  reset cause clears
+  PASS  wrong key does not reset the system
+All checks passed
+
+ADR SoC system blocks test
+  PASS  second boot reports a software reset
+  PASS  bus monitor settings were reset
+All checks passed
+
+ADR SoC system blocks test
+  PASS  third boot reports a watchdog reset
+  PASS  no earlier stage failed
+All checks passed
+
+[TB] RESULT: PASS (381746 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

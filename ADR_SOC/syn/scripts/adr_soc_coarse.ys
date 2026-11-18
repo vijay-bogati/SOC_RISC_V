@@ -1,0 +1,19 @@
+#***************************************************************
+# Project name                  : ADR SoC
+# File Name                     : adr_soc_coarse.ys
+# Module/class Name             : Yosys script
+# Author                        : Vijay Bogati
+# Description                   : Full-chip synthesis step 1: read, elaborate, coarse synthesis, checkpoint
+#***************************************************************
+
+# ADR SoC full-chip synthesis, step 1: read, elaborate, generic coarse synthesis (about 1 h 40 min, 4.6 GB).
+# Saves a checkpoint so step 2 can be rerun without elaborating again.
+# adr_mem_model (boot ROM and SRAM storage) stays a black box, like a memory macro; gate-level simulation uses its behavioural model.
+# memory_map is not run: it turns the DDR4 model arrays into flip-flops and needs more than 8 GB.
+plugin -i slang
+read_slang -f syn/out/adr_soc_syn.f --top adr_soc_top -DSYNTHESIS --ignore-initial -Wno-error=range-width-oob --unroll-limit=4000000 --blackboxed-module adr_mem_model
+hierarchy -top adr_soc_top
+synth -top adr_soc_top -run begin:fine
+write_rtlil syn/out/adr_soc_top_coarse.il
+tee -o syn/out/adr_soc_top_coarse_stat.txt stat
+tee -o syn/out/check_coarse.txt check

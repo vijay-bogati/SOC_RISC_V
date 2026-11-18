@@ -1,0 +1,24 @@
+
+ADR SoC AES test
+  PASS  AES-128 encrypts the FIPS-197 C.1 vector
+  PASS  AES-128 decrypts it
+  PASS  AES-192 encrypts the FIPS-197 C.2 vector
+  PASS  AES-192 decrypts it
+  PASS  AES-256 encrypts the FIPS-197 C.3 vector
+  PASS  AES-256 decrypts it
+  PASS  AES-128 encrypts the FIPS-197 B vector
+  PASS  and decrypts it
+  PASS  idle and not done after those runs
+  PASS  busy is set during a run
+  PASS  done is set after a run
+  PASS  a different key gives a different result
+  PASS  writing status clears done
+  PASS  key registers do not read back
+  PASS  no interrupt when not enabled
+  PASS  done raises the AES interrupt
+  PASS  result is right when run under interrupt
+All checks passed
+
+[TB] RESULT: PASS (245205 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

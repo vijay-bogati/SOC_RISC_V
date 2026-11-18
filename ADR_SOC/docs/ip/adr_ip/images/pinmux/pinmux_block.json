@@ -1,0 +1,17 @@
+{"size": [820, 250],
+ "frame": {"box": [200, 14, 420, 220], "title": "adr_pinmux (one 3-to-1 mux per pad, 16 pads)"},
+ "boxes": [
+  {"box": [220, 50, 160, 80], "title": "SEL registers", "lines": ["PADS_LO: pads 0-7", "PADS_HI: pads 8-15", "2 bits per pad"], "color": "blue"},
+  {"box": [420, 60, 180, 140], "title": "Output mux", "lines": ["sel 0 or 3: GPIO", "sel 1: function 1", "sel 2: function 2", "out and dir both", "selected"], "color": "green"}
+ ],
+ "arrows": [
+  {"points": [[20, 90], [218, 90]], "label": "APB", "at": [24, 82], "both": true},
+  {"points": [[380, 100], [418, 100]]},
+  {"points": [[20, 150], [418, 150]], "label": "gpio_out_i, gpio_dir_i (GPIO core)", "at": [24, 142]},
+  {"points": [[20, 175], [418, 175]], "label": "func1_out_i, func1_dir_i (PWM)", "at": [24, 167]},
+  {"points": [[20, 200], [418, 200]], "label": "func2_out_i, func2_dir_i (UART1, SPI)", "at": [24, 192]},
+  {"points": [[600, 130], [800, 130]], "label": "pad_out_o[15:0]", "at": [640, 122]},
+  {"points": [[600, 160], [800, 160]], "label": "pad_dir_o[15:0]", "at": [640, 152]}
+ ],
+ "texts": [{"at": [640, 182], "text": "to gpio_out_o / gpio_dir_o pins", "size": 10, "color": "grey"},
+           {"at": [640, 196], "text": "pad inputs bypass the mux", "size": 10, "color": "grey"}]}

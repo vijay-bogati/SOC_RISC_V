@@ -1,0 +1,33 @@
+
+ADR SoC DMA test
+  PASS  DMA copies 256 aligned bytes
+  PASS  DMA copies one byte
+  PASS  DMA copies from an unaligned source
+  PASS  DMA copies to an unaligned destination
+  PASS  DMA copies with both unaligned
+  PASS  DMA copy longer than one burst
+  PASS  DMA long copy, source offset larger
+  PASS  DMA long copy, destination offset larger
+  PASS  the byte after the length is untouched
+  PASS  a zero length finishes without a transfer
+  PASS  a waiting channel reports busy
+  PASS  all 4 channels finish with correct data
+  PASS  a cached read goes stale after DMA writes
+  PASS  the uncached alias sees the DMA data
+  PASS  invalidating the cache shows the DMA data
+  PASS  the CPU keeps running during a copy
+  PASS  the copy is still correct
+  PASS  a bad source finishes and reports an error
+  PASS  the bus monitor records the DMA read error
+  PASS  the bus monitor records the DMA address
+  PASS  status clears
+  PASS  a bad destination finishes and reports an error
+  PASS  the bus monitor records the DMA write error
+  PASS  DMA works after an error
+  PASS  DMA channel 2 finishing raises its interrupt
+  PASS  DMA channel 3 finishing raises its interrupt
+All checks passed
+
+[TB] RESULT: PASS (548396 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

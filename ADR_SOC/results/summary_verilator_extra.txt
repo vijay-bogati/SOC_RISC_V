@@ -1,0 +1,5 @@
+dma PASS 548396 cycles
+misc PASS 577955 cycles
+uart_i2c PASS 666998 cycles
+i2c PASS 410673 cycles
+amo PASS 1442879 cycles

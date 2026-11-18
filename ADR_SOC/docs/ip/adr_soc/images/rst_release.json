@@ -1,0 +1,36 @@
+{
+ "title": "Power-on reset release (system clock axis; other domains follow on their own clocks)",
+ "cycles": 11,
+ "signals": [
+  {
+   "name": "clk_i",
+   "wave": "ppppppppppp"
+  },
+  {
+   "name": "rst_ni (pin)",
+   "wave": "01........."
+  },
+  {
+   "name": "sys_rst_n",
+   "wave": "0....1....."
+  },
+  {
+   "name": "usb_rst_n",
+   "wave": "0........1."
+  },
+  {
+   "name": "eth_tx_rst_n / eth_rx_rst_n",
+   "wave": "0.......1.."
+  }
+ ],
+ "marks": [
+  {
+   "at": 5,
+   "text": "4 clk_i edges"
+  },
+  {
+   "at": 8,
+   "text": "domain clocks: 4 own edges later"
+  }
+ ]
+}

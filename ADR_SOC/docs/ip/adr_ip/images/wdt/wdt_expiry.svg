@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 226" width="650" height="226">
+<rect width="650" height="226" fill="#ffffff"/>
+<text x="8" y="16" font-family="Liberation Sans, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1f2937">First expiry (enabled, LOAD = L)</text>
+<line x1="170" y1="44" x2="170" y2="200" stroke="#f3f4f6"/>
+<text x="190.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">0</text>
+<line x1="210" y1="44" x2="210" y2="200" stroke="#f3f4f6"/>
+<text x="230.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">1</text>
+<line x1="250" y1="44" x2="250" y2="200" stroke="#f3f4f6"/>
+<text x="270.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">2</text>
+<line x1="290" y1="44" x2="290" y2="200" stroke="#f3f4f6"/>
+<text x="310.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">3</text>
+<line x1="330" y1="44" x2="330" y2="200" stroke="#f3f4f6"/>
+<text x="350.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">4</text>
+<line x1="370" y1="44" x2="370" y2="200" stroke="#f3f4f6"/>
+<text x="390.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">5</text>
+<line x1="410" y1="44" x2="410" y2="200" stroke="#f3f4f6"/>
+<text x="430.0" y="41" font-family="Liberation Sans, Arial, sans-serif" font-size="9" text-anchor="middle" fill="#6b7280">6</text>
+<line x1="450" y1="44" x2="450" y2="200" stroke="#f3f4f6"/>
+<text x="8" y="69.0" font-family="Liberation Sans, Arial, sans-serif" font-size="11" fill="#1f2937">clk_i</text>
+<polyline points="170,74.0 170,56.0 190.0,56.0 190.0,74.0 210,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<polyline points="210,74.0 210,56.0 230.0,56.0 230.0,74.0 250,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<polyline points="250,74.0 250,56.0 270.0,56.0 270.0,74.0 290,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<polyline points="290,74.0 290,56.0 310.0,56.0 310.0,74.0 330,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<polyline points="330,74.0 330,56.0 350.0,56.0 350.0,74.0 370,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<polyline points="370,74.0 370,56.0 390.0,56.0 390.0,74.0 410,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<polyline points="410,74.0 410,56.0 430.0,56.0 430.0,74.0 450,74.0" fill="none" stroke="#1f2937" stroke-width="1.3"/>
+<text x="8" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="11" fill="#1f2937">count_q</text>
+<polygon points="170,95.0 174,86.0 206,86.0 210,95.0 206,104.0 174,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="190.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">2</text>
+<polygon points="210,95.0 214,86.0 246,86.0 250,95.0 246,104.0 214,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="230.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">1</text>
+<polygon points="250,95.0 254,86.0 286,86.0 290,95.0 286,104.0 254,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="270.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">0</text>
+<polygon points="290,95.0 294,86.0 326,86.0 330,95.0 326,104.0 294,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="310.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">L</text>
+<polygon points="330,95.0 334,86.0 366,86.0 370,95.0 366,104.0 334,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="350.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">L-1</text>
+<polygon points="370,95.0 374,86.0 406,86.0 410,95.0 406,104.0 374,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="390.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">L-2</text>
+<polygon points="410,95.0 414,86.0 446,86.0 450,95.0 446,104.0 414,104.0" fill="#dbeafe" stroke="#1f2937" stroke-width="1.1"/>
+<text x="430.0" y="99.0" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">L-3</text>
+<text x="8" y="129.0" font-family="Liberation Sans, Arial, sans-serif" font-size="11" fill="#1f2937">expired_q</text>
+<line x1="170" y1="134.0" x2="290" y2="134.0" stroke="#1f2937" stroke-width="1.3"/>
+<line x1="290" y1="116.0" x2="290" y2="134.0" stroke="#1f2937" stroke-width="1.3"/>
+<line x1="290" y1="116.0" x2="450" y2="116.0" stroke="#1f2937" stroke-width="1.3"/>
+<text x="8" y="159.0" font-family="Liberation Sans, Arial, sans-serif" font-size="11" fill="#1f2937">irq_o</text>
+<line x1="170" y1="164.0" x2="290" y2="164.0" stroke="#1f2937" stroke-width="1.3"/>
+<line x1="290" y1="146.0" x2="290" y2="164.0" stroke="#1f2937" stroke-width="1.3"/>
+<line x1="290" y1="146.0" x2="450" y2="146.0" stroke="#1f2937" stroke-width="1.3"/>
+<text x="8" y="189.0" font-family="Liberation Sans, Arial, sans-serif" font-size="11" fill="#1f2937">reset_req_o</text>
+<line x1="170" y1="194.0" x2="450" y2="194.0" stroke="#1f2937" stroke-width="1.3"/>
+<line x1="290" y1="46" x2="290" y2="204" stroke="#b45309" stroke-dasharray="4,3" stroke-width="1.2"/>
+<text x="293" y="218" font-family="Liberation Sans, Arial, sans-serif" font-size="10" fill="#b45309">expiry, LOAD + 1 clocks after reload</text>
+</svg>

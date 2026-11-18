@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 772" width="880" height="772">
+<rect width="880" height="772" fill="#ffffff"/>
+<text x="52" y="28" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#64748b" font-weight="bold">Source</text>
+<text x="48" y="55" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">1-2</text>
+<rect x="84" y="36" width="190" height="28" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="179.0" y="53.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">UART0, UART1 (level)</text>
+<polyline points="274,50 380,50" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,50 371.0,54.5 371.0,45.5" fill="#475569"/>
+<text x="48" y="91" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">3</text>
+<rect x="84" y="72" width="190" height="28" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="179.0" y="89.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">GPIO (edge)</text>
+<polyline points="274,86 380,86" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,86 371.0,90.5 371.0,81.5" fill="#475569"/>
+<text x="48" y="127" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">4-11</text>
+<rect x="84" y="108" width="190" height="28" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="179.0" y="125.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Timer 0 to 7 (edge)</text>
+<polyline points="274,122 380,122" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,122 371.0,126.5 371.0,117.5" fill="#475569"/>
+<text x="48" y="163" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">12,14</text>
+<rect x="84" y="144" width="190" height="28" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="179.0" y="161.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">SPI, QSPI (edge)</text>
+<polyline points="274,158 380,158" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,158 371.0,162.5 371.0,153.5" fill="#475569"/>
+<text x="48" y="199" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">15-18</text>
+<rect x="84" y="180" width="190" height="28" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="179.0" y="197.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">PWM timer 0 to 3 (edge)</text>
+<polyline points="274,194 380,194" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,194 371.0,198.5 371.0,189.5" fill="#475569"/>
+<text x="48" y="235" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">19</text>
+<rect x="84" y="216" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="233.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Watchdog (level)</text>
+<polyline points="274,230 380,230" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,230 371.0,234.5 371.0,225.5" fill="#475569"/>
+<text x="48" y="271" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">20</text>
+<rect x="84" y="252" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="269.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">AES (level)</text>
+<polyline points="274,266 380,266" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,266 371.0,270.5 371.0,261.5" fill="#475569"/>
+<text x="48" y="307" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">21</text>
+<rect x="84" y="288" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="305.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Bus error monitor (level)</text>
+<polyline points="274,302 380,302" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,302 371.0,306.5 371.0,297.5" fill="#475569"/>
+<text x="48" y="343" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">22</text>
+<rect x="84" y="324" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="341.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">DMA (level)</text>
+<polyline points="274,338 380,338" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,338 371.0,342.5 371.0,333.5" fill="#475569"/>
+<text x="48" y="379" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">24</text>
+<rect x="84" y="360" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="377.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">ADC (level)</text>
+<polyline points="274,374 380,374" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,374 371.0,378.5 371.0,369.5" fill="#475569"/>
+<text x="48" y="415" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">25</text>
+<rect x="84" y="396" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="413.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">OTP (level)</text>
+<polyline points="274,410 380,410" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,410 371.0,414.5 371.0,405.5" fill="#475569"/>
+<text x="48" y="451" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">26</text>
+<rect x="84" y="432" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="449.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Always-on timer (level)</text>
+<polyline points="274,446 380,446" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,446 371.0,450.5 371.0,441.5" fill="#475569"/>
+<text x="48" y="487" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">27</text>
+<rect x="84" y="468" width="190" height="28" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="179.0" y="485.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Ethernet (level)</text>
+<polyline points="274,482 380,482" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,482 371.0,486.5 371.0,477.5" fill="#475569"/>
+<text x="48" y="523" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">28</text>
+<rect x="84" y="504" width="190" height="28" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="179.0" y="521.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">USB device (level)</text>
+<polyline points="274,518 380,518" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="380,518 371.0,522.5 371.0,513.5" fill="#475569"/>
+<text x="48" y="559" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">13,29,30</text>
+<rect x="84" y="540" width="190" height="28" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="179.0" y="557.85" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1f2937">Reserved, tied to 0</text>
+<polyline points="274,554 380,554" fill="none" stroke="#475569" stroke-width="1.6" stroke-dasharray="5 4"/>
+<polygon points="380,554 371.0,558.5 371.0,549.5" fill="#475569"/>
+<rect x="382" y="36" width="150" height="528" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="457.0" y="279.4" font-family="Liberation Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2937" font-weight="bold">PLIC</text>
+<text x="457.0" y="296.4" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937">30 sources</text>
+<text x="457.0" y="313.4" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937">2 targets</text>
+<text x="457.0" y="330.4" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937">priority 0 to 7</text>
+<rect x="682" y="36" width="170" height="712" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="767.0" y="379.9" font-family="Liberation Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2937" font-weight="bold">CVA6 CPU</text>
+<text x="767.0" y="396.9" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937">interrupt and</text>
+<text x="767.0" y="413.9" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937">debug inputs</text>
+<polyline points="532,210 680,210" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="680,210 671.0,214.5 671.0,205.5" fill="#475569"/>
+<text x="606" y="202" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">irq_i[0]</text>
+<text x="606" y="225" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#64748b">machine external</text>
+<polyline points="532,390 680,390" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="680,390 671.0,394.5 671.0,385.5" fill="#475569"/>
+<text x="606" y="382" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">irq_i[1]</text>
+<text x="606" y="405" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#64748b">supervisor external</text>
+<rect x="382" y="592" width="150" height="76" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="457.0" y="626.55" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="bold">CLINT</text>
+<text x="457.0" y="642.55" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937">mtime on rtc_i edges</text>
+<polyline points="532,612 680,612" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="680,612 671.0,616.5 671.0,607.5" fill="#475569"/>
+<text x="606" y="605" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">time_irq_i</text>
+<polyline points="532,650 680,650" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="680,650 671.0,654.5 671.0,645.5" fill="#475569"/>
+<text x="606" y="643" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">ipi_i</text>
+<rect x="382" y="688" width="150" height="56" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="457.0" y="720.55" font-family="Liberation Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="bold">Debug module</text>
+<polyline points="532,716 680,716" fill="none" stroke="#475569" stroke-width="1.6"/>
+<polygon points="680,716 671.0,720.5 671.0,711.5" fill="#475569"/>
+<text x="606" y="709" font-family="Liberation Mono, DejaVu Sans Mono, monospace" font-size="11" text-anchor="middle" fill="#1f2937">debug_req_i</text>
+<text x="84" y="612" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="start" fill="#64748b">Source 23: I2C (level).</text>
+<rect x="84" y="628" width="14" height="12" rx="2" fill="#dbeafe" stroke="#2563eb"/>
+<text x="104" y="638" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="start" fill="#1f2937">Third-party IP</text>
+<rect x="196.39999999999998" y="628" width="14" height="12" rx="2" fill="#dcfce7" stroke="#15803d"/>
+<text x="216.39999999999998" y="638" font-family="Liberation Sans, Arial, sans-serif" font-size="11" text-anchor="start" fill="#1f2937">Our own RTL</text>
+</svg>

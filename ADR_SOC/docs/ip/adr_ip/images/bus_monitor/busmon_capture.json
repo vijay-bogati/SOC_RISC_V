@@ -1,0 +1,12 @@
+{"title": "Read error from the CPU (initiator 0), STATUS clear before, IRQ_EN = 1",
+ "cycles": 7,
+ "signals": [
+  {"name": "clk_i", "wave": "ppppppp"},
+  {"name": "R valid & ready, RESP[1]", "wave": "0.10..."},
+  {"name": "read_error_i[0]", "wave": "0.10..."},
+  {"name": "last_read_addr_i[0]", "wave": "=......", "data": ["A (last AR accepted)"]},
+  {"name": "STATUS[0]", "wave": "0..1..."},
+  {"name": "ADDR_HI:ADDR_LO", "wave": "=..=...", "data": ["old", "A"]},
+  {"name": "irq_o", "wave": "0..1..."}
+ ],
+ "marks": [{"at": 3, "text": "recorded"}]}

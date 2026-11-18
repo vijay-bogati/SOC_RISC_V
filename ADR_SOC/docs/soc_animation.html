@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IoT SoC — Animated Data-Flow Explainer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --bg:#0a0f1e;--panel:#111830;--panel2:#0d1428;--line:#24304f;--text:#e7ecfb;--muted:#8d97b8;
+  --amber:#f5b84b;--green:#4ade80;--cyan:#38bdf8;--violet:#a78bfa;--pink:#f472b6;--red:#f87171;--blue:#60a5fa;--teal:#2dd4bf;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;line-height:1.45}
+.wrap{max-width:1440px;margin:0 auto;padding:22px 20px 48px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0;font-size:14px;max-width:760px}
+.tabs{display:flex;gap:6px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:4px}
+.tabs button{background:none;border:0;color:var(--muted);font:600 14px 'IBM Plex Sans',system-ui,sans-serif;padding:9px 14px;border-radius:9px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:#1c2748;color:var(--text)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 12px}
+.bar button,.bar select{background:var(--panel);border:1px solid var(--line);color:var(--text);font:600 13px 'IBM Plex Sans',system-ui,sans-serif;padding:7px 12px;border-radius:8px;cursor:pointer}
+.bar button:disabled{opacity:.35;cursor:default}
+.bar .sp{flex:1}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+figure{margin:0;background:radial-gradient(1200px 600px at 50% 40%,#111a35 0%,#0b1122 70%);border:1px solid var(--line);border-radius:14px;padding:6px}
+figcaption{color:var(--muted);font-size:13px;padding:8px 10px 4px}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:'IBM Plex Sans',sans-serif;fill:var(--text)}
+svg .mono{font-family:'IBM Plex Mono',monospace}
+.wire{fill:none;stroke:#26335a;stroke-width:2.5}
+.wire.hs{stroke-width:6;stroke:#22305a}
+.wire.irqbase{stroke:#5a2a35;stroke-dasharray:4 4}
+.apbbus{stroke:#5b4a26;stroke-width:5;fill:none}
+.route{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;opacity:.95;stroke-dasharray:7 6;animation:flow .7s linear infinite}
+.route.ghost{stroke-opacity:0;animation:none}
+@keyframes flow{to{stroke-dashoffset:-13}}
+.pkt{filter:drop-shadow(0 0 5px currentColor)}
+.ambient{opacity:.6}
+.pkt-label{font:600 12.5px 'IBM Plex Mono',monospace;paint-order:stroke;stroke:#0a0f1e;stroke-width:4px}
+.pin{fill:#b8943f;transition:fill .15s}
+.pin.flash{fill:#fff}
+.pkg{fill:#151c30;stroke:#3a4870;stroke-width:2}
+.die{fill:#1a2440;stroke:#4a5b8e;stroke-width:1.5}
+.mini{fill:#202c50;stroke:#3a4a7a}
+.mini-t{font-size:11.5px;fill:#b7c2e6}
+.die-t{font-size:20px;font-weight:700}
+.link{fill:var(--cyan)!important;font-weight:600;font-size:13px;cursor:pointer}
+.sig{font:400 11px 'IBM Plex Mono',monospace;fill:#7f8bb2}
+.pinlbl{font:600 11px 'IBM Plex Mono',monospace;fill:#c9d3f5}
+.blk rect.b{fill:#121a33;stroke:#2c3a63;stroke-width:1.5;transition:fill .25s,stroke .25s}
+.blk .t1{font-weight:700;font-size:13.5px}
+.blk .t2{font-size:10.5px;fill:var(--muted)}
+.blk.on rect.b{stroke:var(--c);stroke-width:2.2;fill:color-mix(in srgb,var(--c) 16%,#121a33);filter:drop-shadow(0 0 7px var(--c))}
+.blk.ext rect.b{fill:#0f1a2c;stroke-dasharray:4 3}
+.blk.on.ext rect.b{stroke-dasharray:none}
+.dev{cursor:pointer}
+.dev rect.b{fill:#121a33;stroke:#2c3a63;stroke-width:1.5}
+.dev:hover rect.b{stroke:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.dev .n{font-weight:700;font-size:14px}
+.dev .f{font:600 11.5px 'IBM Plex Mono',monospace}
+.dev .v{font:400 12.5px 'IBM Plex Mono',monospace;fill:#dfe6ff}
+.boundary{fill:none;stroke:#3a4870;stroke-width:2;stroke-dasharray:10 6}
+.panel{display:grid;grid-template-columns:320px 1fr;gap:14px;margin-top:14px}
+@media (max-width:860px){.panel{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.card h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.scn button{display:block;width:100%;text-align:left;background:none;border:1px solid transparent;color:var(--text);padding:8px 10px;border-radius:9px;cursor:pointer;font:600 13.5px 'IBM Plex Sans',system-ui,sans-serif;margin-bottom:3px}
+.scn button span{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.scn button:hover{background:#17203c}
+.scn button.cur{background:#1c2748;border-color:#34457a}
+.d-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+#scTitle{font-weight:700;font-size:16px}
+#stepNo{font:600 12px 'IBM Plex Mono',monospace;color:var(--muted);white-space:nowrap}
+#stepText{margin:8px 0 10px;font-size:14.5px}
+.wire-data{font:400 12.5px 'IBM Plex Mono',monospace;background:#0b1226;border:1px solid var(--line);padding:9px 11px;border-radius:8px;color:var(--amber);overflow-x:auto;white-space:pre}
+ol.steps{margin:12px 0 8px;padding-left:22px;font-size:13px}
+ol.steps li{cursor:pointer;padding:3px 6px;border-radius:6px;color:var(--muted)}
+ol.steps li.cur{background:#1c2748;color:var(--text)}
+ol.steps li.done{color:#aeb8d8}
+.auto{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center}
+section[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>How an IoT SoC moves data</h1>
+      <p class="sub">Two animated views of one RISC-V IoT chip: what plugs into which pins, and what happens inside (CPU, NPU, GPU, NoC, DMA, memory, interrupts) when each device talks to it.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-pins" aria-selected="true">1 · Pin-level view</button>
+      <button role="tab" id="tab-inside" aria-selected="false">2 · Inside the SoC</button>
+    </div>
+  </header>
+
+  <div class="bar">
+    <button id="play">⏸ Pause</button>
+    <button id="prev" disabled>⏮ Step</button>
+    <button id="next" disabled>Step ⏭</button>
+    <select id="speed" aria-label="Speed">
+      <option value="0.5">0.5× speed</option>
+      <option value="1" selected>1× speed</option>
+      <option value="2">2× speed</option>
+    </select>
+    <span class="sp"></span>
+    <div class="legend">
+      <span><i style="background:var(--amber)"></i>UART / I²C / SPI / APB</span>
+      <span><i style="background:var(--green)"></i>GPIO / PWM</span>
+      <span><i style="background:var(--cyan)"></i>USB / Ethernet / PCIe / NoC</span>
+      <span><i style="background:var(--violet)"></i>MIPI camera / display</span>
+      <span><i style="background:var(--teal)"></i>NPU / GPU compute</span>
+      <span><i style="background:var(--pink)"></i>DDR memory traffic</span>
+      <span><i style="background:var(--red)"></i>Interrupt</span>
+    </div>
+  </div>
+
+  <section id="v-pins">
+    <figure>
+      <svg id="s1" viewBox="0 0 1400 830" role="img" aria-label="IoT SoC package with 16 external devices wired to its UART, I2C, I2S, SPI, PWM, GPIO, USB, Ethernet, two PCIe, DDR and MIPI pins, with animated data packets on each interface."></svg>
+      <figcaption>Every interface is live: packets show the direction data moves on each pin group. <b>Click any device</b> to see how the SoC handles its data inside.</figcaption>
+    </figure>
+  </section>
+
+  <section id="v-inside" hidden>
+    <figure>
+      <svg id="s2" viewBox="0 0 1600 810" role="img" aria-label="Block diagram inside the SoC: CPU cluster, PLIC, NPU AI accelerator, GPU, SRAM and boot ROM on a network-on-chip; an APB bridge to UART, I2C, SPI, PWM, GPIO, I2S audio, timer and watchdog; DMA; and DDR, USB, Ethernet, two PCIe (Wi-Fi and 5G), CSI-2 and DSI controllers with PHYs, connected to external devices. Animated packets trace each step of a scenario."></svg>
+      <figcaption><b>Bright, labelled packets</b> = the scenario being explained step by step (blocks it touches light up). <b>Faint packets</b> = every other use case running at the same time, as on a real chip; the live values on the external devices update as their data completes.</figcaption>
+    </figure>
+    <div class="panel">
+      <div class="card scn">
+        <h3>Scenarios</h3>
+        <div id="scnList"></div>
+      </div>
+      <div class="card">
+        <div class="d-head"><span id="scTitle"></span><span id="stepNo"></span></div>
+        <p id="stepText"></p>
+        <div class="wire-data" id="stepWire"></div>
+        <ol class="steps" id="stepList"></ol>
+        <label class="auto"><input type="checkbox" id="autoAll" checked> Auto-advance to the next scenario</label>
+        <label class="auto"><input type="checkbox" id="bgAll" checked> Keep all other use cases running live in the background</label>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const C={amber:'#f5b84b',green:'#4ade80',cyan:'#38bdf8',violet:'#a78bfa',pink:'#f472b6',red:'#f87171',blue:'#60a5fa',teal:'#2dd4bf'};
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(parent,x,y,s,cls,extra){const t=el('text',Object.assign({x:x,y:y,class:cls||''},extra||{}),parent);t.textContent=s;return t;}
+const P=pts=>'M'+pts.map(p=>p[0]+' '+p[1]).join(' L');
+const rnd=a=>(Math.random()*2-1)*a;
+
+/* ---------- simulation clocks (pausable, speed-adjustable) ---------- */
+class Clock{
+  constructor(){this.t=0;this.paused=false;this.speed=1;this.items=new Set();}
+  tick(dt){if(this.paused)return;this.t+=dt*this.speed;for(const f of Array.from(this.items))f(this.t);}
+  wait(ms){return new Promise(res=>{const end=this.t+ms;const f=t=>{if(t>=end){this.items.delete(f);res();}};this.items.add(f);});}
+  add(f){this.items.add(f);} del(f){this.items.delete(f);} clear(){this.items.clear();}
+}
+const c1=new Clock(), c2=new Clock(), cA=new Clock();
+let active='pins';
+let last=performance.now();
+function loop(now){const dt=Math.min(60,now-last);last=now;if(active==='pins')c1.tick(dt);else{cA.tick(dt);c2.tick(dt);}requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+
+/* moving packet train along an SVG path */
+function travel(clock,layer,d,o){
+  return new Promise(res=>{
+    const path=el('path',{d:d,class:'route'+(o.ghost?' ghost':''),stroke:o.color},layer);
+    let L=0; try{L=path.getTotalLength();}catch(e){L=0;}
+    const dur=Math.max(o.minMs||650,(L/(o.pxps||300))*1000);
+    const n=o.dots||3, gap=o.gapMs||(o.ghost?150:170);
+    const dots=[];
+    for(let i=0;i<n;i++){dots.push(el('circle',{r:o.r||5.5,class:'pkt',fill:o.color,style:'color:'+o.color,opacity:0},layer));}
+    let tag=null;
+    if(o.label){tag=el('text',{class:'pkt-label',fill:o.color,opacity:0},layer);tag.textContent=o.label;tag.style.fill=o.color;}
+    const t0=clock.t;
+    const f=t=>{
+      const e=t-t0;let alive=false;
+      for(let i=0;i<n;i++){
+        const c=dots[i];const p=(e-i*gap)/dur;
+        if(p<0){alive=true;c.setAttribute('opacity',0);continue;}
+        if(p>1){c.setAttribute('opacity',0);continue;}
+        alive=true;
+        let pt={x:0,y:0}; try{if(L)pt=path.getPointAtLength(p*L);}catch(err){}
+        c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);c.setAttribute('opacity',1);
+        if(i===0&&tag){tag.setAttribute('x',pt.x+10);tag.setAttribute('y',pt.y-10);tag.setAttribute('opacity',1);}
+      }
+      if(!alive){
+        clock.del(f);dots.forEach(c=>c.remove());if(tag)tag.remove();
+        if(!o.keepRoute)path.remove();
+        res();
+      }
+    };
+    clock.add(f);f(clock.t);
+  });
+}
+
+/* =====================================================================
+   SCENE 1 — pin-level view
+   ===================================================================== */
+const s1=document.getElementById('s1');
+const s1base=el('g',{},s1), s1dev=el('g',{},s1), s1ov=el('g',{},s1);
+const PK={x:520,y:170,w:360,h:510};           // package
+el('rect',{x:PK.x,y:PK.y,width:PK.w,height:PK.h,rx:16,class:'pkg'},s1base);
+el('rect',{x:600,y:205,width:200,height:440,rx:10,class:'die'},s1base);
+txt(s1base,700,240,'IoT SoC','die-t',{'text-anchor':'middle'});
+[[615,256,170,40,'CPU · 2× RISC-V',null],[615,304,82,32,'NPU (AI)','ai'],[703,304,82,32,'GPU','ai'],[615,344,170,18,'NoC',null],
+ [615,370,82,30,'DMA',null],[703,370,82,30,'PLIC',null],[615,408,82,30,'DDR ctl',null],[703,408,82,30,'SRAM',null],
+ [615,446,170,30,'UART·I²C·SPI·I²S·PWM','audio'],[615,484,170,30,'USB·ETH·PCIe×2·MIPI','5g']]
+ .forEach(b=>{const g=el('g',{},s1base);el('rect',{x:b[0],y:b[1],width:b[2],height:b[3],rx:5,class:'mini'},g);
+   txt(g,b[0]+b[2]/2,b[1]+b[3]/2+4,b[4],'mini-t',{'text-anchor':'middle'});
+   if(b[5]){g.style.cursor='pointer';g.addEventListener('click',()=>goInside(b[5]));}});
+const look=txt(s1base,700,600,'Look inside →','link',{'text-anchor':'middle'});
+look.addEventListener('click',()=>goInside('gps'));
+
+let cnt={lora:0,cam:0,disp:0,flash:0,dbg:0,aud:0};
+const dbgLines=['[ok] sensor task','[ok] mqtt connected','wdt kick','temp=24.6C','gps fix 3D','npu: 2 persons'];
+const audLines=['listening…','wake word 97 %','playing reply','listening…'];
+const DEV1=[
+ {id:'gps',side:'L',cy:210,name:'GNSS / GPS module',iface:'UART0 · 9600',sig:'TX · RX',pl:'UART0',c:C.amber,dir:'in',period:1800,scen:'gps',lbl:'NMEA',
+  val:()=>`${(12.9716+rnd(.0003)).toFixed(4)}°N ${(77.5946+rnd(.0003)).toFixed(4)}°E`},
+ {id:'temp',side:'L',cy:295,name:'Temperature sensor',iface:'I²C0 · addr 0x48',sig:'SCL · SDA',pl:'I2C0',c:C.amber,dir:'req',period:2200,scen:'temp',reqLbl:'0x48',
+  val:()=>`${(24.6+rnd(.3)).toFixed(1)} °C`},
+ {id:'flash',side:'L',cy:380,name:'SPI NOR flash 16 MB',iface:'SPI0 · 50 MHz',sig:'SCK MOSI MISO CS',pl:'SPI0',c:C.amber,dir:'req',period:3000,scen:'usb',reqLbl:'0x03',
+  val:()=>`read @0x${(0x40000+(cnt.flash++%64)*0x1000).toString(16).toUpperCase()}`},
+ {id:'lora',side:'L',cy:465,name:'LoRa radio',iface:'SPI1 · 8 MHz',sig:'SCK MOSI MISO CS',pl:'SPI1',c:C.amber,dir:'out',period:2600,scen:'temp',lbl:'pkt',
+  val:()=>`uplink #${++cnt.lora} · SF7`},
+ {id:'audio',side:'L',cy:550,name:'Audio codec (mic + spk)',iface:'I²S0 · 16 kHz 16-bit',sig:'BCLK WS SDI SDO',pl:'I2S0',c:C.amber,dir:'both',period:700,scen:'audio',lbl:'PCM',
+  val:()=>audLines[Math.floor(cnt.aud++/4)%audLines.length]},
+ {id:'dbg',side:'L',cy:635,name:'Debug console (PC)',iface:'UART1 · 115200',sig:'TX · RX',pl:'UART1',c:C.amber,dir:'out',period:1500,scen:'gps',lbl:'log',
+  val:()=>dbgLines[(cnt.dbg++)%dbgLines.length]},
+ {id:'eth',side:'R',cy:215,name:'Ethernet PHY + RJ45',iface:'ETH MAC · RGMII',sig:'RGMII (12 sig)',pl:'RGMII',c:C.cyan,dir:'both',period:900,scen:'eth',fast:true,
+  val:()=>`MQTT ${(10+Math.random()*6).toFixed(1)} KB/s`},
+ {id:'usb',side:'R',cy:320,name:'USB-C port',iface:'USB 2.0 HS · 480 Mbps',sig:'D+ · D−',pl:'USB',c:C.cyan,dir:'both',period:1300,scen:'usb',fast:true,
+  val:()=>`bulk ${(35+Math.random()*5).toFixed(0)} MB/s`},
+ {id:'wifi',side:'R',cy:425,name:'Wi-Fi 6 module',iface:'PCIe0 · Gen2 x1',sig:'TX± RX± REFCLK±',pl:'PCIe0',c:C.cyan,dir:'both',period:1000,scen:'wifi',fast:true,
+  val:()=>`RSSI −${48+Math.floor(Math.random()*8)} dBm`},
+ {id:'g5',side:'R',cy:530,name:'5G NR modem (M.2)',iface:'PCIe1 · Gen3 x2',sig:'2× TX± RX± · CLK±',pl:'PCIe1',c:C.cyan,dir:'both',period:800,scen:'5g',fast:true,
+  val:()=>`NR n78 · ${(90+Math.random()*60).toFixed(0)} Mb/s`},
+ {id:'ddr',side:'R',cy:635,name:'LPDDR4 DRAM 2 GB',iface:'DDR · x16 · 3200 MT/s',sig:'DQ[15:0] DQS CA CK',pl:'DDR',c:C.pink,dir:'both',period:350,scen:'ai',fast:true,
+  val:()=>`${(3.4+Math.random()*1.2).toFixed(1)} GB/s R/W`},
+ {id:'cam',side:'T',cx:600,name:'Camera sensor',iface:'MIPI CSI-2 · D-PHY',sig:'2 lanes + clk',pl:'CSI',c:C.violet,dir:'in',period:600,scen:'ai',fast:true,
+  val:()=>`1080p30 · frame ${++cnt.cam}`},
+ {id:'disp',side:'T',cx:800,name:'Display panel',iface:'MIPI DSI · C-PHY',sig:'1 trio (3-wire)',pl:'DSI',c:C.violet,dir:'out',period:500,scen:'ai',fast:true,
+  val:()=>`60 Hz · frame ${++cnt.disp}`},
+ {id:'motor',side:'B',cx:560,name:'Motor / LED',iface:'PWM0 · 20 kHz',sig:'PWM',pl:'PWM0',c:C.green,dir:'out',period:700,scen:'ctrl',
+  val:()=>`duty ${60+Math.floor(Math.random()*20)} %`},
+ {id:'btn',side:'B',cx:700,name:'Push button',iface:'GPIO7 · in',sig:'IN',pl:'GPIO7',c:C.green,dir:'in',period:3800,scen:'ctrl',
+  st:false,val:function(){this.st=!this.st;return this.st?'pressed':'released';}},
+ {id:'relay',side:'B',cx:840,name:'Relay',iface:'GPIO8 · out',sig:'OUT',pl:'GPIO8',c:C.green,dir:'out',period:4200,scen:'ctrl',
+  st:false,val:function(){this.st=!this.st;return this.st?'ON':'OFF';}}
+];
+const PKB=PK.y+PK.h; // package bottom (680)
+DEV1.forEach(d=>{
+  let box,devPt,pinPt,pin,pinL,sigP,sigAnchor='middle';
+  if(d.side==='L'){box=[140,d.cy-35,240,70];devPt=[380,d.cy];pinPt=[520,d.cy];pin=[514,d.cy-4];pinL=[528,d.cy+4,'start'];sigP=[450,d.cy-8];}
+  if(d.side==='R'){box=[1020,d.cy-35,240,70];devPt=[1020,d.cy];pinPt=[880,d.cy];pin=[876,d.cy-4];pinL=[872,d.cy+4,'end'];sigP=[950,d.cy-8];}
+  if(d.side==='T'){box=[d.cx-90,35,180,75];devPt=[d.cx,110];pinPt=[d.cx,PK.y];pin=[d.cx-4,PK.y-4];pinL=[d.cx,PK.y+18,'middle'];sigP=[d.cx+8,144];sigAnchor='start';}
+  if(d.side==='B'){box=[d.cx-62,740,124,72];devPt=[d.cx,740];pinPt=[d.cx,PKB];pin=[d.cx-4,PKB-4];pinL=[d.cx,PKB-10,'middle'];sigP=[d.cx+8,714];sigAnchor='start';}
+  el('path',{d:P([devPt,pinPt]),class:'wire'+(d.fast?' hs':'')},s1base);
+  txt(s1base,sigP[0],sigP[1],d.sig,'sig',{'text-anchor':sigAnchor});
+  d.pin=el('rect',{x:pin[0],y:pin[1],width:8,height:8,rx:1.5,class:'pin'},s1base);
+  txt(s1base,pinL[0],pinL[1],d.pl,'pinlbl',{'text-anchor':pinL[2]});
+  const g=el('g',{class:'dev',style:'--c:'+d.c,tabindex:0,role:'button','aria-label':d.name+' on '+d.iface+': show inside view'},s1dev);
+  el('rect',{class:'b',x:box[0],y:box[1],width:box[2],height:box[3],rx:9},g);
+  el('rect',{x:box[0],y:box[1]+10,width:3,height:box[3]-20,rx:1.5,fill:d.c},g);
+  txt(g,box[0]+12,box[1]+22,d.name,'n');
+  const f=txt(g,box[0]+12,box[1]+40,d.iface,'f');f.style.fill=d.c;
+  d.vEl=txt(g,box[0]+12,box[1]+59,d.val.call(d),'v');
+  const go=()=>goInside(d.scen);
+  g.addEventListener('click',go);
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+  d.din=P([devPt,pinPt]);d.dout=P([pinPt,devPt]);
+});
+
+function flash(pin){pin.classList.add('flash');setTimeout(()=>pin.classList.remove('flash'),220);}
+async function traffic(d){
+  await c1.wait(Math.random()*d.period);
+  for(;;){
+    let dir=d.dir; if(dir==='both')dir=Math.random()<.5?'in':'out';
+    const o={color:d.c,dots:d.fast?4:2,gapMs:d.fast?70:170,pxps:d.fast?420:190,r:d.fast?4:5,ghost:true};
+    if(dir==='req'){
+      await travel(c1,s1ov,d.dout,Object.assign({},o,{dots:1,label:d.reqLbl}));
+      flash(d.pin);
+      await travel(c1,s1ov,d.din,o);
+    }else{
+      await travel(c1,s1ov,dir==='in'?d.din:d.dout,Object.assign({},o,{label:d.lbl}));
+    }
+    flash(d.pin);
+    d.vEl.textContent=d.val.call(d);
+    await c1.wait(d.period*(0.6+Math.random()*0.8));
+  }
+}
+DEV1.forEach(traffic);
+
+/* =====================================================================
+   SCENE 2 — inside the SoC   (viewBox 1600 × 810)
+   ===================================================================== */
+const s2=document.getElementById('s2');
+const s2base=el('g',{},s2), s2blk=el('g',{},s2), s2bg=el('g',{class:'ambient'},s2), s2ov=el('g',{},s2);
+const NOCY=214;
+const lsx=i=>76+80*i, hsx=i=>847+108*i;
+const CX=540, DX=hsx(0), NPUX=925, GPUX=1135, SRAMX=1330, ROMX=1495;
+const NLS=9, NLSX=7, NHS=7;   // APB peripherals, of which first 7 have pins; high-speed blocks
+const blocks={};
+function block(parent,o){
+  const g=el('g',{class:'blk'+(o.cls?' '+o.cls:''),style:'--c:'+o.c},parent);
+  el('rect',{class:'b',x:o.x,y:o.y,width:o.w,height:o.h,rx:8},g);
+  if(o.t1)txt(g,o.x+o.w/2,o.y+o.h/2+(o.t2?-2:5),o.t1,'t1',{'text-anchor':'middle'});
+  if(o.t2)g.t2el=txt(g,o.x+o.w/2,o.y+o.h/2+14,o.t2,'t2 mono',{'text-anchor':'middle'});
+  blocks[o.id]=g;return g;
+}
+
+el('rect',{x:20,y:20,width:1560,height:670,rx:16,class:'boundary'},s2base);
+txt(s2base,36,682,'SoC die boundary','sig');
+
+/* static wires */
+const W=(pts,cls)=>el('path',{d:P(pts),class:cls||'wire'},s2base);
+W([[230,95],[300,95]],'wire irqbase');
+[145,CX,NPUX,GPUX,SRAMX,ROMX].forEach(x=>W([[x,140],[x,200]]));
+W([[340,245],[340,285]]);W([[545,245],[545,285]]);W([[340,335],[340,375]]);
+el('path',{d:P([[50,375],[lsx(NLS-1)+40,375]]),class:'apbbus'},s2base);
+for(let i=0;i<NLS;i++){W([[lsx(i),375],[lsx(i),405]]);}
+const lsSig=['TX RX','SCL SDA','4-wire','4-wire','PWM','IO7','SCK WS SD'];
+for(let i=0;i<NLSX;i++){W([[lsx(i),465],[lsx(i),730]]);txt(s2base,lsx(i)+5,612,lsSig[i],'sig');el('rect',{x:lsx(i)-4,y:686,width:8,height:8,rx:1.5,class:'pin'},s2base);}
+const hsSig=['DQ x16','D+ D−','RGMII','PCIe x1','PCIe x2','2 lanes','1 trio'];
+for(let i=0;i<NHS;i++){W([[hsx(i),245],[hsx(i),285]]);W([[hsx(i),345],[hsx(i),380]]);W([[hsx(i),420],[hsx(i),730]],'wire hs');
+  txt(s2base,hsx(i)+7,612,hsSig[i],'sig');el('rect',{x:hsx(i)-4,y:686,width:8,height:8,rx:1.5,class:'pin'},s2base);}
+
+/* blocks */
+block(s2blk,{id:'plic',x:60,y:50,w:170,h:90,t1:'PLIC',t2:'interrupt controller',c:C.red});
+const cpuG=block(s2blk,{id:'cpu',x:300,y:40,w:480,h:110,c:C.cyan});
+txt(cpuG,316,60,'CPU cluster · 2× RISC-V RV64GC @ 1.2 GHz','t2');
+[[315,'Core 0','L1 I/D 32 KB'],[470,'Core 1','L1 I/D 32 KB'],[625,'L2 cache','512 KB shared']].forEach(c=>{
+  el('rect',{x:c[0],y:72,width:142,height:64,rx:6,class:'mini'},cpuG);
+  txt(cpuG,c[0]+71,100,c[1],'t1',{'text-anchor':'middle'});txt(cpuG,c[0]+71,118,c[2],'t2 mono',{'text-anchor':'middle'});});
+block(s2blk,{id:'npu',x:NPUX-85,y:50,w:170,h:90,t1:'NPU · AI accelerator',t2:'4 TOPS INT8 · 1 MB SRAM',c:C.teal});
+block(s2blk,{id:'gpu',x:GPUX-85,y:50,w:170,h:90,t1:'GPU',t2:'2D/3D · Vulkan/GLES',c:C.teal});
+block(s2blk,{id:'sram',x:SRAMX-70,y:60,w:140,h:80,t1:'SRAM',t2:'256 KB on-chip',c:C.cyan});
+block(s2blk,{id:'rom',x:ROMX-65,y:60,w:130,h:80,t1:'Boot ROM',t2:'64 KB',c:C.cyan});
+const nocG=block(s2blk,{id:'noc',x:40,y:200,w:1520,h:45,c:C.blue});
+txt(nocG,56,239,'NoC · AXI4 interconnect (crossbar + QoS)','t2');
+block(s2blk,{id:'bridge',x:270,y:285,w:140,h:50,t1:'AXI→APB',t2:'bridge',c:C.amber});
+block(s2blk,{id:'dma',x:470,y:285,w:150,h:50,t1:'DMA',t2:'8 channels',c:C.cyan});
+txt(s2base,44,272,'APB peripheral subsystem','sig');
+const apbG=el('g',{class:'blk',style:'--c:'+C.amber},s2blk);
+el('rect',{class:'b',x:50,y:371,width:lsx(NLS-1)-10,height:8,rx:4,style:'fill:transparent;stroke:transparent'},apbG);
+blocks.apb=apbG; txt(s2base,420,368,'APB bus','sig');
+const lsN=[['UART0','16550'],['I²C0','400 kHz'],['SPI0','flash'],['SPI1','8 MHz'],['PWM0','4 ch'],['GPIO','32 pins'],['I²S0','audio'],['TIMER','64-bit'],['WDT','reset']];
+lsN.forEach((n,i)=>block(s2blk,{id:'ls'+i,x:40+80*i,y:405,w:72,h:60,t1:n[0],t2:n[1],c:i===4||i===5?C.green:C.amber}));
+const hsN=[['DDR ctrl','LPDDR4'],['USB 2.0','device'],['ETH MAC','1 GbE'],['PCIe0 RC','Gen2 x1'],['PCIe1 RC','Gen3 x2'],['CSI-2 RX','camera in'],['DSI TX','display out']];
+const hsC=[C.pink,C.cyan,C.cyan,C.cyan,C.cyan,C.violet,C.violet];
+const phyN=['DDR PHY','USB PHY','RGMII','SerDes','SerDes','D-PHY','C-PHY'];
+hsN.forEach((n,i)=>{block(s2blk,{id:'hs'+i,x:hsx(i)-47,y:285,w:94,h:60,t1:n[0],t2:n[1],c:hsC[i]});
+  block(s2blk,{id:'phy'+i,x:hsx(i)-35,y:380,w:70,h:40,t1:phyN[i],c:hsC[i]});});
+const xls=[['GPS','NMEA'],['Temp','I²C 0x48'],['NOR flash','16 MB'],['LoRa','868 MHz'],['Motor','PWM'],['Button','GPIO7'],['Codec','mic + spk']];
+xls.forEach((n,i)=>block(s2blk,{id:'xls'+i,x:40+80*i,y:730,w:72,h:62,t1:n[0],t2:n[1],c:i===4||i===5?C.green:C.amber,cls:'ext'}));
+const xhs=[['LPDDR4','2 GB x16'],['USB-C','to PC'],['ETH PHY','RJ45 1G'],['Wi-Fi 6','PCIe M.2'],['5G modem','M.2 NR'],['Camera','8 MP'],['Display','1080p']];
+xhs.forEach((n,i)=>block(s2blk,{id:'xhs'+i,x:hsx(i)-47,y:730,w:94,h:62,t1:n[0],t2:n[1],c:hsC[i],cls:'ext'}));
+
+/* routes */
+const toDDR=x=>[[x,NOCY],[DX,NOCY],[DX,730]];
+const R={
+  cpu2ls:i=>P([[CX,150],[CX,NOCY],[340,NOCY],[340,335],[340,375],[lsx(i),375],[lsx(i),405]]),
+  ls2cpu:i=>P([[lsx(i),405],[lsx(i),375],[340,375],[340,335],[340,NOCY],[CX,NOCY],[CX,150]]),
+  ls2dma:i=>P([[lsx(i),405],[lsx(i),375],[340,375],[340,NOCY],[545,NOCY],[545,285]]),
+  dma2ls:i=>P([[545,285],[545,NOCY],[340,NOCY],[340,375],[lsx(i),375],[lsx(i),405]]),
+  lsIn:i=>P([[lsx(i),730],[lsx(i),465]]),
+  lsOut:i=>P([[lsx(i),465],[lsx(i),730]]),
+  hsIn:i=>P([[hsx(i),730],[hsx(i),345]]),
+  hsOut:i=>P([[hsx(i),345],[hsx(i),730]]),
+  dma2ddr:P([[545,285]].concat(toDDR(545))),
+  ddr2dma:P([[DX,730],[DX,NOCY],[545,NOCY],[545,285]]),
+  hs2ddr:i=>P([[hsx(i),285]].concat(toDDR(hsx(i)))),
+  ddr2hs:i=>P([[DX,730],[DX,NOCY],[hsx(i),NOCY],[hsx(i),285]]),
+  cpu2ddr:P([[CX,150]].concat(toDDR(CX))),
+  ddr2cpu:P([[DX,730],[DX,NOCY],[CX,NOCY],[CX,150]]),
+  cpu2hs:i=>P([[CX,150],[CX,NOCY],[hsx(i),NOCY],[hsx(i),285]]),
+  cpu2sram:P([[CX,150],[CX,NOCY],[SRAMX,NOCY],[SRAMX,140]]),
+  cpu2top:x=>P([[CX,150],[CX,NOCY],[x,NOCY],[x,140]]),
+  ddr2top:x=>P([[DX,730],[DX,NOCY],[x,NOCY],[x,140]]),
+  top2ddr:x=>P([[x,140]].concat(toDDR(x))),
+  irq:(x,y)=>`M${x} ${y} C${x} ${y-140} 320 330 200 140`,
+  irqTop:x=>`M${x} 50 C${x} -6 260 -6 200 50`,
+  plic2cpu:P([[230,95],[300,95]])
+};
+const DDR=['hs0','phy0','xhs0'];
+const LSP=i=>['cpu','noc','bridge','apb','ls'+i];
+
+const SCN={
+ gps:{title:'GPS fix: UART0 → DMA → DDR → CPU',sum:'DMA moves serial data; CPU only parses',steps:[
+  {d:R.lsIn(0),c:C.amber,hl:['xls0','ls0'],lbl:'NMEA',dots:4,t:'The GPS module streams NMEA text at 9600 baud into the UART0 RX pin. UART0 oversamples each bit (16×), strips start/stop bits and pushes bytes into its 16-byte RX FIFO.',w:'$GPGGA,092751.00,1258.30,N,07735.68,E,1,08,1.01,920.0,M,-86.4,M,,*5C'},
+  {d:R.ls2dma(0),c:C.amber,hl:['ls0','apb','bridge','noc','dma'],lbl:'DREQ',dots:3,t:'When the FIFO reaches its threshold (8 bytes), UART0 asserts a DMA request. DMA channel 0 reads the UART data register: NoC → AXI-to-APB bridge → APB bus → UART0.',w:'DMA CH0  SRC=UART0_RBR (fixed)  DST=0x8010_0000 (incr)  LEN=82'},
+  {d:R.dma2ddr,c:C.pink,hl:['dma','noc'].concat(DDR),lbl:'AXI WR',dots:4,t:'The DMA engine packs the bytes and writes them into a ring buffer in LPDDR4 as AXI burst writes, through the NoC, the DDR controller and the DDR PHY.',w:'AXI AW  addr=0x8010_0000  len=16  size=4 B  burst=INCR'},
+  {d:R.irq(480,285),c:C.red,hl:['dma','plic'],lbl:'IRQ 12',dots:1,t:'At the end of the sentence (line-feed match / byte count), DMA raises its transfer-complete interrupt (source 12) into the PLIC.',w:'PLIC pending[12] = 1   priority 3 > threshold 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The PLIC routes the highest-priority pending source to hart 0 as a machine external interrupt. The core traps to the ISR and claims ID 12.',w:'mcause = 0x8000_000B  (M-mode external interrupt) → claim 12'},
+  {d:R.ddr2cpu,c:C.pink,hl:['cpu','noc'].concat(DDR),lbl:'cache fill',dots:3,t:'The ISR wakes the GPS task. The CPU reads the sentence from DDR (cache lines fill L2/L1) and parses it into a position fix.',w:'fix: 12.9717° N, 77.5946° E · 8 sats · HDOP 1.0'}]},
+ temp:{title:'Temperature over I²C0 → LoRa uplink over SPI1',sum:'CPU register access + interrupts',steps:[
+  {d:R.cpu2ls(1),c:C.amber,hl:LSP(1),lbl:'CFG',dots:2,t:'The CPU programs I²C0 with store instructions: target 0x48, read 2 bytes, START. Each store travels NoC → AXI-to-APB bridge → APB bus → I²C0 registers.',w:'I2C0_TAR=0x48   I2C0_CMD=READ×2   I2C0_CTRL.START=1'},
+  {d:R.lsOut(1),c:C.amber,hl:['ls1','xls1'],lbl:'0x91',dots:2,t:'I²C0 drives SCL at 400 kHz and sends START plus the address byte (0x48 << 1 | R). The sensor pulls SDA low to ACK.',w:'S | 1001000 1 | ACK'},
+  {d:R.lsIn(1),c:C.amber,hl:['xls1','ls1'],lbl:'0x18 0x9A',dots:2,t:'The sensor shifts out two data bytes. I²C0 ACKs the first, NACKs the last and sends STOP.',w:'0x18 ACK | 0x9A NACK | P    → raw 0x189A'},
+  {d:R.irq(lsx(1)-24,405),c:C.red,hl:['ls1','plic'],lbl:'IRQ 5',dots:1,t:'I²C0 raises its RX-done interrupt (source 5) into the PLIC.',w:'PLIC pending[5] = 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The PLIC signals hart 0; the ISR claims source 5.',w:'claim → 5'},
+  {d:R.ls2cpu(1),c:C.amber,hl:['ls1','apb','bridge','noc','cpu'],lbl:'0x189A',dots:2,t:'The ISR reads the RX data register (the APB read returns through the bridge and NoC) and converts it to °C.',w:'0x189A >> 4 = 393 × 0.0625 = 24.6 °C'},
+  {d:R.cpu2sram,c:C.cyan,hl:['cpu','noc','sram'],lbl:'store',dots:2,t:'The reading is appended to a telemetry buffer in on-chip SRAM, which is fast and needs no DDR access.',w:'SRAM[0x0800_1A40] ← { t=1712, temp=24.6 }'},
+  {d:R.cpu2ls(3),c:C.amber,hl:LSP(3),lbl:'TX FIFO',dots:3,t:'The CPU writes the LoRa payload into the SPI1 TX FIFO.',w:'SPI1_DR ← 0x80 0x01 0x18 0x9A 0x2C'},
+  {d:R.lsOut(3),c:C.amber,hl:['ls3','xls3'],lbl:'SPI',dots:4,t:'SPI1 pulls CS low and clocks the bytes out on SCK/MOSI at 8 MHz. The LoRa radio then transmits the packet over the air.',w:'CS↓  SCK×40  MOSI: 80 01 18 9A 2C  CS↑'}]},
+ ctrl:{title:'Button → GPIO → PWM motor, timer tick, watchdog',sum:'Real-time control loop',steps:[
+  {d:R.lsIn(5),c:C.green,hl:['xls5','ls5'],lbl:'edge',dots:1,t:'The user presses the button. GPIO7 detects the falling edge through its debounce filter.',w:'GPIO_IN[7]: 1 → 0'},
+  {d:R.irq(lsx(5)-24,405),c:C.red,hl:['ls5','plic'],lbl:'IRQ 8',dots:1,t:'The GPIO block raises interrupt source 8.',w:'PLIC pending[8] = 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'Hart 0 runs the GPIO ISR and decides to speed up the motor.',w:'claim → 8'},
+  {d:R.cpu2ls(4),c:C.amber,hl:LSP(4),lbl:'duty',dots:1,t:'The CPU writes the PWM0 period and compare registers: 20 kHz, 70 % duty.',w:'PWM0_PERIOD=2500   PWM0_CMP=1750'},
+  {d:R.lsOut(4),c:C.green,hl:['ls4','xls4'],lbl:'PWM',dots:7,pxps:300,t:'PWM0 toggles its pin in hardware, with no CPU work per cycle, driving the motor-driver gate.',w:'‾‾‾‾‾‾‾__‾‾‾‾‾‾‾__‾‾‾‾‾‾‾__   (70 %)'},
+  {d:R.irq(lsx(7)-24,405),c:C.red,hl:['ls7','plic'],lbl:'TICK',dots:1,t:'TIMER0 fires every 1 ms to run the control loop (read sensors, adjust duty).',w:'TIMER0: compare match @ 1 ms'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The control loop runs on hart 0.',w:'loop(): err=+2 rpm → duty 69.8 %'},
+  {d:R.cpu2ls(8),c:C.amber,hl:LSP(8),lbl:'kick',dots:1,t:'Firmware refreshes the watchdog before it expires. If the software ever hangs, the kicks stop and the WDT resets the SoC.',w:'WDT_KEY ← 0x5A5A   (timeout 2 s)'}]},
+ audio:{title:'Voice command: mic → I²S → DMA → NPU wake-word → speaker',sum:'Audio streaming + on-chip AI keyword spotting',steps:[
+  {d:R.lsIn(6),c:C.amber,hl:['xls6','ls6'],lbl:'PCM',dots:5,t:'The audio codec digitizes the microphone at 16 kHz / 16-bit and sends PCM samples over I²S (BCLK, WS, SD) into the I²S0 RX FIFO.',w:'I²S frame  WS=L  SD: 0x03F2 0xFF1C 0x0410 …   (16 kHz × 16 bit)'},
+  {d:R.ls2dma(6),c:C.amber,hl:['ls6','apb','bridge','noc','dma'],lbl:'DREQ',dots:3,t:'Each time the RX FIFO is half full, I²S0 requests DMA. DMA channel 2 drains it so no samples are lost.',w:'DMA CH2  SRC=I2S0_RXDR  DST=audio ring  (ping-pong, 20 ms blocks)'},
+  {d:R.dma2ddr,c:C.pink,hl:['dma','noc'].concat(DDR),lbl:'AXI WR',dots:4,t:'DMA writes 20 ms audio blocks (320 samples) into a ping-pong buffer in DDR.',w:'block[n] → 0x8040_0000 + n × 640 B'},
+  {d:R.cpu2top(NPUX),c:C.teal,hl:['cpu','noc','npu'],lbl:'job',dots:1,t:'The CPU queues a keyword-spotting job on the NPU: input = latest audio features, model = small INT8 CNN.',w:'NPU_JOB  model=kws_int8  in=0x8040_0280  out=0x8040_8000'},
+  {d:R.ddr2top(NPUX),c:C.pink,hl:DDR.concat(['noc','npu']),lbl:'AXI RD',dots:4,t:'The NPU’s own DMA fetches the audio features and model weights from DDR into its local SRAM, then runs the network on its MAC array.',w:'≈ 2.4 M MACs → ~0.3 ms on NPU  (vs ~25 ms on the CPU)'},
+  {d:R.irqTop(NPUX-60),c:C.red,hl:['npu','plic'],lbl:'IRQ 50',dots:1,t:'Inference done: wake word detected with 97 % confidence. The NPU raises an interrupt.',w:'out: { "hey_device": 0.97, "noise": 0.02 }'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The CPU handles the event and queues a reply tone for playback.',w:'claim → 50 · play(reply.pcm)'},
+  {d:R.ddr2dma,c:C.pink,hl:DDR.concat(['noc','dma']),lbl:'AXI RD',dots:3,t:'DMA channel 3 reads the reply audio samples from DDR.',w:'DMA CH3  SRC=0x8044_0000 (incr)  DST=I2S0_TXDR (fixed)'},
+  {d:R.dma2ls(6),c:C.amber,hl:['dma','noc','bridge','apb','ls6'],lbl:'TX FIFO',dots:3,t:'DMA feeds the samples into the I²S0 TX FIFO through the APB bridge.',w:'I2S0_TXDR ← 0x0102 0x0F3A …'},
+  {d:R.lsOut(6),c:C.amber,hl:['ls6','xls6'],lbl:'PCM',dots:5,t:'I²S0 shifts the samples to the codec, whose DAC and amplifier drive the speaker.',w:'SDO → codec DAC → class-D amp → speaker'}]},
+ camera:{title:'Camera → CSI-2 (D-PHY) → DDR → DSI (C-PHY) → display',sum:'Streaming: peripherals as bus masters',steps:[
+  {d:R.hsIn(5),c:C.violet,hl:['xhs5','phy5','hs5'],lbl:'RAW10',dots:6,pxps:520,gapMs:90,t:'The image sensor streams 1080p30 RAW10 over 2 D-PHY data lanes plus a clock lane (1.5 Gbps per lane). The D-PHY converts the high-speed differential signals into parallel bytes.',w:'CSI-2 long packet  DI=0x2B (RAW10)  WC=2400  …payload…  CRC'},
+  {d:R.hs2ddr(5),c:C.pink,hl:['hs5','noc'].concat(DDR),lbl:'AXI WR',dots:6,pxps:520,gapMs:90,t:'The CSI-2 receiver checks header ECC and CRC, unpacks pixels and, as its own AXI master, bursts each line through the NoC into a frame buffer in DDR. The CPU never touches the pixels.',w:'1920×1080 × 10 bit × 30 fps ≈ 78 MB/s into DDR'},
+  {d:R.irq(hsx(5)-30,285),c:C.red,hl:['hs5','plic'],lbl:'FRAME_END',dots:1,t:'At frame end, the CSI-2 receiver raises an interrupt.',w:'PLIC pending[31] = 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The camera driver swaps buffers (double buffering) and hands the finished frame to the display pipeline.',w:'ready = frame A;  CSI-2 next → frame B'},
+  {d:R.ddr2hs(6),c:C.pink,hl:DDR.concat(['noc','hs6']),lbl:'AXI RD',dots:6,pxps:520,gapMs:90,t:'The DSI display controller fetches the finished frame from DDR with AXI read bursts.',w:'AXI AR  addr=frame_A  len=64  burst=INCR'},
+  {d:R.hsOut(6),c:C.violet,hl:['hs6','phy6','xhs6'],lbl:'pixels',dots:6,pxps:520,gapMs:90,t:'DSI TX packetizes the pixels and the C-PHY sends them over a 3-wire trio to the panel at 60 Hz.',w:'DSI RGB888 long packets · HS mode · 1 trio @ 2.5 Gsps'}]},
+ ai:{title:'AI vision: camera → NPU detection → GPU overlay → display',sum:'NPU and GPU share frames through DDR',steps:[
+  {d:R.hsIn(5),c:C.violet,hl:['xhs5','phy5','hs5'],lbl:'RAW10',dots:6,pxps:520,gapMs:90,t:'Camera frames arrive over MIPI CSI-2 (D-PHY) into the CSI-2 receiver.',w:'1080p30 RAW10 · 2 lanes × 1.5 Gbps'},
+  {d:R.hs2ddr(5),c:C.pink,hl:['hs5','noc'].concat(DDR),lbl:'AXI WR',dots:6,pxps:520,gapMs:90,t:'The receiver writes the frame into DDR (frame buffer A).',w:'frame A → 0x8800_0000'},
+  {d:R.cpu2top(NPUX),c:C.teal,hl:['cpu','noc','npu'],lbl:'job',dots:1,t:'The CPU submits a person-detection job to the NPU: input = frame A resized to 320×320, model = INT8 object detector.',w:'NPU_JOB  model=det_int8  in=frameA  out=0x8060_0000'},
+  {d:R.ddr2top(NPUX),c:C.pink,hl:DDR.concat(['noc','npu']),lbl:'AXI RD',dots:6,pxps:480,gapMs:90,t:'The NPU reads image tiles and weights from DDR into its local SRAM and runs the convolution layers on its MAC array.',w:'≈ 1.2 GMAC per frame → ~6 ms at 4 TOPS INT8'},
+  {d:R.top2ddr(NPUX),c:C.pink,hl:['npu','noc'].concat(DDR),lbl:'boxes',dots:2,t:'The NPU writes the detection results (bounding boxes + scores) back to DDR.',w:'[ {person, 0.94, (120,40,310,460)}, {person, 0.88, (520,60,700,470)} ]'},
+  {d:R.irqTop(NPUX-60),c:C.red,hl:['npu','plic'],lbl:'IRQ 50',dots:1,t:'The NPU raises its job-done interrupt.',w:'PLIC pending[50] = 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The CPU reads the results and builds a GPU command buffer to draw the boxes and labels.',w:'claim → 50 · 2 persons detected'},
+  {d:R.cpu2top(GPUX),c:C.teal,hl:['cpu','noc','gpu'],lbl:'cmds',dots:2,t:'The CPU submits the command buffer to the GPU and rings its doorbell.',w:'GPU_RING ← blit(frameA), draw_rect×2, draw_text×2'},
+  {d:R.ddr2top(GPUX),c:C.pink,hl:DDR.concat(['noc','gpu']),lbl:'tex RD',dots:5,pxps:480,gapMs:90,t:'The GPU reads the camera frame from DDR as a texture.',w:'texture fetch  frameA  1920×1080 RGB'},
+  {d:R.top2ddr(GPUX),c:C.pink,hl:['gpu','noc'].concat(DDR),lbl:'AXI WR',dots:5,pxps:480,gapMs:90,t:'The GPU renders the overlay and writes the composited frame B to DDR.',w:'render target → frame B (0x8900_0000)'},
+  {d:R.ddr2hs(6),c:C.pink,hl:DDR.concat(['noc','hs6']),lbl:'AXI RD',dots:6,pxps:520,gapMs:90,t:'The DSI controller scans out frame B from DDR.',w:'AXI AR  addr=frame_B  len=64  burst=INCR'},
+  {d:R.hsOut(6),c:C.violet,hl:['hs6','phy6','xhs6'],lbl:'pixels',dots:6,pxps:520,gapMs:90,t:'The display shows the live video with detection boxes drawn on it.',w:'DSI → C-PHY → panel · 60 Hz'}]},
+ eth:{title:'MQTT publish over Ethernet',sum:'Descriptor-based DMA in a NIC',steps:[
+  {d:R.cpu2ddr,c:C.pink,hl:['cpu','noc'].concat(DDR),lbl:'pkt',dots:3,t:'The CPU builds an MQTT → TCP → IP → Ethernet frame and a TX descriptor in DDR.',w:'TX desc: buf=0x8020_0000  len=142  OWN=1'},
+  {d:R.cpu2hs(2),c:C.cyan,hl:['cpu','noc','hs2'],lbl:'doorbell',dots:1,t:'The CPU writes the ETH MAC doorbell register (TX poll demand).',w:'ETH_DMA_TXPOLL ← 1'},
+  {d:R.ddr2hs(2),c:C.pink,hl:DDR.concat(['noc','hs2']),lbl:'AXI RD',dots:4,t:'The MAC’s built-in DMA reads the descriptor and the frame payload from DDR through the NoC.',w:'AXI AR  0x8020_0000  len=9 × 16 B'},
+  {d:R.hsOut(2),c:C.cyan,hl:['hs2','phy2','xhs2'],lbl:'frame',dots:5,pxps:460,gapMs:90,t:'The MAC adds the preamble and FCS and drives RGMII to the external Ethernet PHY, which puts it on the RJ45 cable.',w:'55×7 D5 | dst | src | 0800 | IP/TCP/MQTT | FCS'},
+  {d:R.irq(hsx(2)-30,285),c:C.red,hl:['hs2','plic'],lbl:'TX_DONE',dots:1,t:'The MAC clears OWN in the descriptor and raises a TX-complete interrupt.',w:'PLIC pending[40] = 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The driver frees the buffer and the network stack moves on.',w:'netbuf_free(0x8020_0000)'}]},
+ wifi:{title:'Wi-Fi packet in over PCIe0',sum:'External device writes into SoC memory',steps:[
+  {d:R.hsIn(3),c:C.cyan,hl:['xhs3','phy3','hs3'],lbl:'TLP',dots:5,pxps:480,gapMs:90,t:'The Wi-Fi module receives a frame and issues PCIe memory-write TLPs over a Gen2 x1 link (5 GT/s) through the SerDes.',w:'TLP MWr64  addr=0x8030_0000  len=128 DW'},
+  {d:R.hs2ddr(3),c:C.pink,hl:['hs3','noc'].concat(DDR),lbl:'AXI WR',dots:5,pxps:480,gapMs:90,t:'PCIe root complex 0 translates the TLPs into AXI writes, and the NoC routes them into the RX ring in DDR.',w:'AXI AW  0x8030_0000  len=32  burst=INCR'},
+  {d:R.irq(hsx(3)-30,285),c:C.red,hl:['hs3','plic'],lbl:'MSI',dots:1,t:'The module sends an MSI, which the PCIe controller turns into a PLIC interrupt.',w:'MSI data=0x0001 → PLIC source 44'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'Hart 0 claims the interrupt and schedules the Wi-Fi driver.',w:'claim → 44'},
+  {d:R.ddr2cpu,c:C.pink,hl:DDR.concat(['noc','cpu']),lbl:'read',dots:3,t:'The network stack reads the packet from DDR, for example a cloud command to change the motor speed.',w:'MQTT SUB "dev/42/cmd" → {"motor":70}'}]},
+ g5:{title:'Cloud uplink over 5G modem (PCIe1)',sum:'Cellular modem as a PCIe bus master',steps:[
+  {d:R.cpu2ddr,c:C.pink,hl:['cpu','noc'].concat(DDR),lbl:'JSON',dots:3,t:'The CPU writes the AI result and telemetry as a message into a TX ring in DDR.',w:'{"dev":42,"persons":2,"temp":24.6,"gps":[12.97,77.59]}'},
+  {d:R.cpu2hs(4),c:C.cyan,hl:['cpu','noc','hs4'],lbl:'doorbell',dots:1,t:'The CPU rings the modem’s doorbell: a store to the modem’s BAR goes through PCIe root complex 1.',w:'store → modem BAR0+0x100  (TX ring tail = 17)'},
+  {d:R.hsOut(4),c:C.cyan,hl:['hs4','phy4','xhs4'],lbl:'MWr',dots:2,pxps:480,t:'The doorbell becomes a memory-write TLP on the Gen3 x2 link (8 GT/s per lane) to the M.2 5G module.',w:'TLP MWr32  BAR0+0x100  data=0x11'},
+  {d:R.hsIn(4),c:C.cyan,hl:['xhs4','phy4','hs4'],lbl:'MRd',dots:2,pxps:480,t:'The modem, acting as a PCIe bus master, sends memory-read requests for the TX buffer.',w:'TLP MRd64  addr=0x8070_0000  len=64 DW'},
+  {d:R.ddr2hs(4),c:C.pink,hl:DDR.concat(['noc','hs4']),lbl:'AXI RD',dots:4,pxps:480,gapMs:90,t:'Root complex 1 serves the reads from DDR through the NoC.',w:'AXI AR  0x8070_0000  len=16  burst=INCR'},
+  {d:R.hsOut(4),c:C.cyan,hl:['hs4','phy4','xhs4'],lbl:'CplD',dots:5,pxps:480,gapMs:90,t:'Completions with data return to the modem, which sends the message to the cloud over 5G NR.',w:'TLP CplD × 4  →  5G NR uplink · band n78 · ~120 Mb/s'},
+  {d:R.irq(hsx(4)-30,285),c:C.red,hl:['hs4','plic'],lbl:'MSI',dots:1,t:'The modem reports TX done with an MSI, which PCIe1 maps to a PLIC interrupt.',w:'MSI → PLIC source 46'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The driver reclaims the TX buffer.',w:'claim → 46 · tx_ring.head = 17'}]},
+ usb:{title:'Firmware update: USB → DDR → SPI flash',sum:'Bulk transfer, verify, program flash',steps:[
+  {d:R.hsIn(1),c:C.cyan,hl:['xhs1','phy1','hs1'],lbl:'BULK OUT',dots:5,pxps:480,gapMs:90,t:'A host PC sends a firmware image over USB 2.0 High-Speed (480 Mbps) to a bulk-OUT endpoint. The USB PHY recovers the clock and decodes NRZI.',w:'OUT token → DATA0 [512 B] → ACK'},
+  {d:R.hs2ddr(1),c:C.pink,hl:['hs1','noc'].concat(DDR),lbl:'AXI WR',dots:5,pxps:480,gapMs:90,t:'The USB device controller’s DMA writes the packets into a staging buffer in DDR.',w:'image 1.2 MB → 0x8100_0000'},
+  {d:R.irq(hsx(1)-30,285),c:C.red,hl:['hs1','plic'],lbl:'XFER_DONE',dots:1,t:'When the transfer completes, the USB controller raises an interrupt.',w:'PLIC pending[36] = 1'},
+  {d:R.plic2cpu,c:C.red,hl:['plic','cpu'],lbl:'MEIP',dots:1,t:'The bootloader task wakes up.',w:'claim → 36'},
+  {d:R.ddr2cpu,c:C.pink,hl:DDR.concat(['noc','cpu']),lbl:'verify',dots:4,t:'The CPU reads the image and verifies its signature (SHA-256 + ECDSA) before trusting it.',w:'sha256 = 9f3c…e1   signature OK'},
+  {d:R.cpu2ls(2),c:C.amber,hl:LSP(2),lbl:'CMD',dots:2,t:'The CPU sends write-enable and page-program commands to SPI0.',w:'0x06 (WREN) · 0x02 (PAGE PROGRAM) addr 0x01_0000'},
+  {d:R.lsOut(2),c:C.amber,hl:['ls2','xls2'],lbl:'256 B',dots:4,t:'SPI0 clocks each 256-byte page into the NOR flash. On the next reset, the boot ROM loads the new firmware.',w:'CS↓ 02 01 00 00 [256 data bytes] CS↑ → poll 0x05 until WIP=0'}]}
+};
+SCN['5g']=SCN.g5; delete SCN.g5;
+const ORDER=['gps','temp','ctrl','audio','camera','ai','eth','wifi','5g','usb'];
+
+/* scenario UI */
+const scnList=document.getElementById('scnList'), stepList=document.getElementById('stepList');
+const scBtns={};
+ORDER.forEach(k=>{const b=document.createElement('button');b.innerHTML=SCN[k].title+'<span>'+SCN[k].sum+'</span>';
+  b.addEventListener('click',()=>start(k,0));scnList.appendChild(b);scBtns[k]=b;});
+function setHL(ids){Object.values(blocks).forEach(g=>g.classList.remove('on'));ids.forEach(id=>blocks[id]&&blocks[id].classList.add('on'));}
+function showStep(k,i){
+  const sc=SCN[k],st=sc.steps[i];
+  document.getElementById('scTitle').textContent=sc.title;
+  document.getElementById('stepNo').textContent='step '+(i+1)+' / '+sc.steps.length;
+  document.getElementById('stepText').textContent=st.t;
+  const w=document.getElementById('stepWire');w.textContent=st.w;w.style.color=st.c;
+  Array.from(stepList.children).forEach((li,j)=>{li.className=j===i?'cur':(j<i?'done':'');});
+}
+function renderList(k){
+  stepList.innerHTML='';
+  SCN[k].steps.forEach((s,j)=>{const li=document.createElement('li');li.textContent=s.t.split('. ')[0].replace(/\.$/,'')+'.';
+    li.addEventListener('click',()=>start(k,j));stepList.appendChild(li);});
+  Object.entries(scBtns).forEach(([kk,b])=>b.classList.toggle('cur',kk===k));
+}
+let tok=0,curKey='gps',curIdx=0,started=false;
+function start(k,idx){
+  tok++;const my=tok;curKey=k;c2.clear();s2ov.innerHTML='';renderList(k);run(my,k,idx||0);
+}
+async function run(my,k,idx){
+  const sc=SCN[k];
+  for(let i=idx;i<sc.steps.length;i++){
+    if(my!==tok)return;
+    curIdx=i;const st=sc.steps[i];
+    s2ov.innerHTML='';showStep(k,i);setHL(st.hl);
+    await travel(c2,s2ov,st.d,{color:st.c,dots:st.dots||3,label:st.lbl,pxps:st.pxps||300,gapMs:st.gapMs||170,keepRoute:true,minMs:900});
+    if(my!==tok)return;
+    await c2.wait(900);
+  }
+  if(my!==tok)return;
+  updateLive(k);
+  await c2.wait(600);
+  if(my!==tok)return;
+  const auto=document.getElementById('autoAll').checked;
+  start(auto?ORDER[(ORDER.indexOf(k)+1)%ORDER.length]:k,0);
+}
+
+/* ---------- real-time background traffic: every use case keeps running ---------- */
+const lv={lora:0,cam:0,disp:0,flash:0,btn:false,aud:0};
+const LIVE={
+  gps:[['xls0',()=>`${(12.9716+rnd(.0003)).toFixed(3)}°N`]],
+  temp:[['xls1',()=>`${(24.6+rnd(.3)).toFixed(1)} °C`],['xls3',()=>`uplink #${++lv.lora}`]],
+  ctrl:[['xls4',()=>`duty ${60+Math.floor(Math.random()*20)}%`],['xls5',()=>(lv.btn=!lv.btn)?'pressed':'released']],
+  audio:[['xls6',()=>['wake 97%','playing','listening'][(lv.aud++)%3]]],
+  camera:[['xhs5',()=>`frame ${lv.cam+=3}`],['xhs6',()=>`frame ${lv.disp+=3}`]],
+  ai:[['xhs6',()=>`${1+Math.floor(Math.random()*3)} persons`]],
+  eth:[['xhs2',()=>`${(10+Math.random()*6).toFixed(1)} KB/s`]],
+  wifi:[['xhs3',()=>`RSSI −${48+Math.floor(Math.random()*8)}`]],
+  '5g':[['xhs4',()=>`${(90+Math.random()*60).toFixed(0)} Mb/s`]],
+  usb:[['xhs1',()=>`${(35+Math.random()*5).toFixed(0)} MB/s`],['xls2',()=>`@0x${(0x10000+(lv.flash++%64)*0x100).toString(16).toUpperCase()}`]]
+};
+function updateLive(k){
+  (LIVE[k]||[]).forEach(([id,f])=>{const b=blocks[id];if(b&&b.t2el)b.t2el.textContent=f();});
+  if(blocks.xhs0.t2el)blocks.xhs0.t2el.textContent=`${(3.4+Math.random()*1.2).toFixed(1)} GB/s`;
+}
+ORDER.forEach(updateLive);
+const bgBox=document.getElementById('bgAll');
+async function ambient(k){
+  await cA.wait(Math.random()*2500);
+  for(;;){
+    if(!bgBox.checked||k===curKey){await cA.wait(500);continue;}
+    for(const st of SCN[k].steps){
+      if(k===curKey)break;
+      await travel(cA,s2bg,st.d,{color:st.c,dots:Math.min(st.dots||2,3),r:4,ghost:true,
+        pxps:(st.pxps||300)*1.6,gapMs:110,minMs:350});
+    }
+    if(k!==curKey)updateLive(k);
+    await cA.wait(300+Math.random()*900);
+  }
+}
+let ambientOn=false;
+bgBox.addEventListener('change',()=>{s2bg.style.display=bgBox.checked?'':'none';});
+
+/* =====================================================================
+   tabs + controls
+   ===================================================================== */
+const tabP=document.getElementById('tab-pins'),tabI=document.getElementById('tab-inside');
+const vP=document.getElementById('v-pins'),vI=document.getElementById('v-inside');
+const btnPlay=document.getElementById('play'),btnPrev=document.getElementById('prev'),btnNext=document.getElementById('next');
+function clk(){return active==='pins'?c1:c2;}
+function syncPlay(){btnPlay.textContent=clk().paused?'▶ Play':'⏸ Pause';}
+function show(view){
+  active=view;
+  const ins=view==='inside';
+  vP.hidden=ins;vI.hidden=!ins;
+  tabP.setAttribute('aria-selected',String(!ins));tabI.setAttribute('aria-selected',String(ins));
+  btnPrev.disabled=!ins;btnNext.disabled=!ins;
+  try{history.replaceState(null,'','#'+(ins?'inside':'pins'));}catch(e){}
+  last=performance.now();
+  if(ins&&!started){started=true;start('gps',0);}
+  if(ins&&!ambientOn){ambientOn=true;ORDER.forEach(ambient);}
+  syncPlay();
+}
+function goInside(k){show('inside');start(k,0);window.scrollTo({top:0,behavior:'smooth'});}
+tabP.addEventListener('click',()=>show('pins'));
+tabI.addEventListener('click',()=>show('inside'));
+btnPlay.addEventListener('click',()=>{clk().paused=!clk().paused;if(active==='inside')cA.paused=c2.paused;syncPlay();});
+btnPrev.addEventListener('click',()=>start(curKey,Math.max(0,curIdx-1)));
+btnNext.addEventListener('click',()=>{const n=SCN[curKey].steps.length;if(curIdx+1<n)start(curKey,curIdx+1);else start(ORDER[(ORDER.indexOf(curKey)+1)%ORDER.length],0);});
+document.getElementById('speed').addEventListener('change',e=>{c1.speed=c2.speed=cA.speed=parseFloat(e.target.value);});
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){c1.speed=c2.speed=cA.speed=0.5;document.getElementById('speed').value='0.5';}
+window.addEventListener('hashchange',()=>show(location.hash==='#inside'?'inside':'pins'));
+show(location.hash==='#inside'?'inside':'pins');
+})();
+</script>
+</body>
+</html>

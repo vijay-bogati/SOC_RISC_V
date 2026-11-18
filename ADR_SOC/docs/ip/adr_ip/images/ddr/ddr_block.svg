@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" width="860" height="300">
+<rect width="860" height="300" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1f2937"/></marker><marker id="b" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="#1f2937"/></marker></defs>
+<rect x="150" y="14" width="560" height="270" rx="6" fill="#f9fafb" stroke="#6b7280" stroke-dasharray="5,3"/>
+<text x="160" y="32" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="#1f2937" font-weight="bold">adr_ddr</text>
+<rect x="170" y="60" width="170" height="100" rx="5" fill="#fef3c7" stroke="#b45309" stroke-width="1.4"/>
+<text x="255.0" y="93.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">axi_riscv_atomics_wrap</text>
+<text x="255.0" y="108.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">AMOs and LR/SC as</text>
+<text x="255.0" y="122.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">plain reads and writes</text>
+<text x="255.0" y="136.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">1 write in flight</text>
+<rect x="380" y="50" width="300" height="210" rx="5" fill="#dcfce7" stroke="#15803d" stroke-width="1.4"/>
+<text x="530.0" y="103.5" font-family="Liberation Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="bold">litedram_core (generated)</text>
+<text x="530.0" y="118.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">AXI user port, 64-bit native</text>
+<text x="530.0" y="132.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">controller: bank machines,</text>
+<text x="530.0" y="146.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">refresh, command scheduler</text>
+<text x="530.0" y="160.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">Wishbone control registers</text>
+<text x="530.0" y="174.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937"></text>
+<text x="530.0" y="188.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">DFI-level DDR4 memory model</text>
+<text x="530.0" y="202.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">(simulation only), 32 MiB</text>
+<text x="530.0" y="216.5" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="middle" fill="#1f2937">no PHY, no reset input</text>
+<polyline points="20,110 168,110" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="24" y="102" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">AXI4 target 6</text>
+<polyline points="340,110 378,110" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<polyline points="20,220 378,220" fill="none" stroke="#1f2937" stroke-width="1.3" marker-start="url(#b)" marker-end="url(#a)"/>
+<text x="24" y="212" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#1f2937">APB control, slot 20 (as Wishbone)</text>
+<text x="20" y="140" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#6b7280">0x9000_0000, 32 MiB</text>
+<text x="20" y="154" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#6b7280">uncached alias 0x1_9000_0000</text>
+<text x="20" y="270" font-family="Liberation Sans, Arial, sans-serif" font-size="10" text-anchor="start" fill="#6b7280">clk_i only; rst_ni resets the atomics unit only</text>
+</svg>

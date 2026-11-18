@@ -1,0 +1,9 @@
+{"title": "Single-byte write with stop, as seen on the bus (one box per bus phase)",
+ "cycles": 11,
+ "signals": [
+  {"name": "COMMAND write", "wave": "10........."},
+  {"name": "STATUS.busy", "wave": "01.......0."},
+  {"name": "bus phase", "wave": "x========x.", "data": ["START", "addr 7b", "W", "ACK", "data 8b", "ACK", "STOP", "idle"]},
+  {"name": "IRQ_STATUS.done", "wave": "0.........1"},
+  {"name": "irq_o (done enabled)", "wave": "0.........1"}
+ ]}

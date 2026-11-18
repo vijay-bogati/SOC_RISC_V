@@ -1,0 +1,14 @@
+{"size": [860, 300],
+ "frame": {"box": [150, 14, 560, 270], "title": "adr_ddr"},
+ "boxes": [
+  {"box": [170, 60, 170, 100], "title": "axi_riscv_atomics_wrap", "lines": ["AMOs and LR/SC as", "plain reads and writes", "1 write in flight"], "color": "amber"},
+  {"box": [380, 50, 300, 210], "title": "litedram_core (generated)", "lines": ["AXI user port, 64-bit native", "controller: bank machines,", "refresh, command scheduler", "Wishbone control registers", "", "DFI-level DDR4 memory model", "(simulation only), 32 MiB", "no PHY, no reset input"], "color": "green"}
+ ],
+ "arrows": [
+  {"points": [[20, 110], [168, 110]], "label": "AXI4 target 6", "at": [24, 102], "both": true},
+  {"points": [[340, 110], [378, 110]], "both": true},
+  {"points": [[20, 220], [378, 220]], "label": "APB control, slot 20 (as Wishbone)", "at": [24, 212], "both": true}
+ ],
+ "texts": [{"at": [20, 140], "text": "0x9000_0000, 32 MiB", "size": 10, "color": "grey"},
+           {"at": [20, 154], "text": "uncached alias 0x1_9000_0000", "size": 10, "color": "grey"},
+           {"at": [20, 270], "text": "clk_i only; rst_ni resets the atomics unit only", "size": 10, "color": "grey"}]}

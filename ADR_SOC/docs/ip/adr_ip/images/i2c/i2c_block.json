@@ -1,0 +1,26 @@
+{"size": [860, 330],
+ "frame": {"box": [150, 14, 520, 300], "title": "adr_i2c"},
+ "boxes": [
+  {"box": [170, 44, 160, 150], "title": "APB registers", "lines": ["STATUS, COMMAND,", "DATA, PRESCALE,", "IRQ_ENABLE,", "IRQ_STATUS", "byte strobes honoured"], "color": "blue"},
+  {"box": [370, 44, 130, 44], "title": "Command FIFO", "lines": ["32 x 12 bits"], "color": "grey"},
+  {"box": [370, 100, 130, 44], "title": "Write FIFO", "lines": ["32 x (8 + last)"], "color": "grey"},
+  {"box": [370, 156, 130, 44], "title": "Read FIFO", "lines": ["32 x (8 + last)"], "color": "grey"},
+  {"box": [530, 70, 120, 110], "title": "i2c_master", "lines": ["verilog-i2c,", "unmodified", "SCL = clk /", "(4 x PRESCALE)"], "color": "green"},
+  {"box": [170, 220, 160, 70], "title": "Status / interrupt", "lines": ["done, miss_ack,", "rx_ready, overflow"], "color": "red"}
+ ],
+ "arrows": [
+  {"points": [[20, 110], [168, 110]], "label": "APB (with PSTRB)", "at": [24, 102], "both": true},
+  {"points": [[330, 66], [368, 66]]},
+  {"points": [[330, 122], [368, 122]]},
+  {"points": [[368, 178], [332, 178]]},
+  {"points": [[500, 66], [515, 66], [515, 95], [528, 95]]},
+  {"points": [[500, 122], [528, 122]]},
+  {"points": [[528, 160], [515, 160], [515, 178], [502, 178]]},
+  {"points": [[650, 100], [840, 100]], "label": "scl_o, scl_t / scl_i", "at": [676, 92], "both": true},
+  {"points": [[650, 140], [840, 140]], "label": "sda_o, sda_t / sda_i", "at": [676, 132], "both": true},
+  {"points": [[590, 180], [590, 255], [332, 255]], "label": "busy, missed_ack", "at": [480, 248]},
+  {"points": [[170, 280], [100, 280]], "label": "", "at": [0, 0]}
+ ],
+ "texts": [{"at": [20, 276], "text": "irq_o: PLIC 23", "size": 10},
+           {"at": [676, 160], "text": "open drain: _t = 1 releases the line", "size": 10, "color": "grey"},
+           {"at": [20, 300], "text": "clk_i gated by CLK_EN bit 4; FIFOs and engine use a synchronous reset", "size": 10, "color": "grey"}]}

@@ -1,0 +1,52 @@
+{
+ "title": "Read command with the bench macro model (derived)",
+ "cycles": 12,
+ "signals": [
+  {
+   "name": "clk_i",
+   "wave": "pppppppppppp"
+  },
+  {
+   "name": "CMD write (1 = read)",
+   "wave": "10.........."
+  },
+  {
+   "name": "STATUS.busy",
+   "wave": "01.........0"
+  },
+  {
+   "name": "macro_req_o",
+   "wave": "010........."
+  },
+  {
+   "name": "macro_we_o",
+   "wave": "0..........."
+  },
+  {
+   "name": "macro_addr_o",
+   "wave": "=...........",
+   "data": [
+    "ADDR[4:0]"
+   ]
+  },
+  {
+   "name": "macro_done_i",
+   "wave": "0.........10"
+  },
+  {
+   "name": "macro_rdata_i",
+   "wave": "x.........=x",
+   "data": [
+    "D"
+   ]
+  },
+  {
+   "name": "RDATA / STATUS.done",
+   "wave": "=..........=",
+   "data": [
+    "old",
+    "D / 1"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{"title": "SAR steps, input 0xA0, 2 clocks per bit for clarity (the SoC needs DIV of 2 or more)",
+ "cycles": 9,
+ "signals": [
+  {"name": "clk_i", "wave": "ppppppppp"},
+  {"name": "CTRL write (start)", "wave": "10......."},
+  {"name": "STATUS.busy", "wave": "01......."},
+  {"name": "dac_code_o", "wave": "==.=.=.=.", "data": ["0", "0x80", "0xC0", "0xA0", "0xB0"]},
+  {"name": "compare_i (synced)", "wave": "x1.0.1.0."},
+  {"name": "DATA (result_q)", "wave": "=..=...=.", "data": ["0", "0x80", "0xA0"]}
+ ]}

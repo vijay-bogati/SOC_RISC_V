@@ -1,0 +1,26 @@
+
+ADR SoC serial bus test
+  PASS  SPI reads the device ID
+  PASS  SPI writes and reads
+  PASS  SPI addresses are independent
+  PASS  SPI chip select 1 is not the device
+  PASS  SPI end-of-transfer interrupt
+  PASS  QSPI reads the device ID on one line
+  PASS  QSPI writes and reads on one line
+  PASS  QSPI addresses are independent
+  PASS  QSPI chip select 1 is not the device
+  PASS  QSPI end-of-transfer interrupt
+  PASS  QSPI reads ID on four lines
+  PASS  QSPI writes and reads on four lines
+  PASS  data written on four lines reads back on one
+  PASS  I2C writes and reads the device
+  PASS  I2C reads a new value
+  PASS  no missed ACK on a good transfer
+  PASS  I2C reports a missed ACK
+  PASS  I2C missed ACK clears
+  PASS  free slots return error data
+All checks passed
+
+[TB] RESULT: PASS (280972 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

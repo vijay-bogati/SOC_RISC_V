@@ -1,0 +1,18 @@
+{"size": [860, 330],
+ "frame": {"box": [150, 14, 540, 300], "title": "adr_dma"},
+ "boxes": [
+  {"box": [170, 44, 170, 120], "title": "Channel registers x4", "lines": ["SRC, DST (64-bit)", "LEN (24-bit)", "CTRL, STATUS", "pending / active / done /", "error / irq_en"], "color": "blue"},
+  {"box": [170, 190, 170, 60], "title": "Round-robin arbiter", "lines": ["one transfer at a time"], "color": "amber"},
+  {"box": [380, 60, 180, 130], "title": "axi_cdma", "lines": ["verilog-axi, unmodified", "64-bit data, unaligned", "bursts up to 8 beats", "read then write", "status: tag + error"], "color": "green"},
+  {"box": [380, 220, 180, 70], "title": "Read credit", "lines": ["at most 12 beats read", "but not yet written"], "color": "violet"}
+ ],
+ "arrows": [
+  {"points": [[20, 100], [168, 100]], "label": "APB", "at": [24, 92], "both": true},
+  {"points": [[255, 164], [255, 188]]},
+  {"points": [[340, 220], [360, 220], [360, 120], [378, 120]], "label": "descriptor", "at": [300, 270]},
+  {"points": [[470, 190], [470, 218]], "both": true},
+  {"points": [[560, 110], [840, 110]], "label": "AXI4 initiator 2 (AR, R, AW, W, B)", "at": [580, 102], "both": true},
+  {"points": [[380, 170], [350, 170], [350, 150], [342, 150]], "label": "status", "at": [344, 184]},
+  {"points": [[340, 60], [600, 60], [600, 250], [840, 250]], "label": "irq_o: PLIC 22", "at": [700, 242]}
+ ],
+ "texts": [{"at": [20, 300], "text": "clk_i: system clock, not gated; engine uses a synchronous reset", "size": 10, "color": "grey"}]}

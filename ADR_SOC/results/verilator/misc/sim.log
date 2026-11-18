@@ -1,0 +1,45 @@
+
+ADR SoC remaining system blocks test
+  PASS  pads default to GPIO
+  PASS  mux register reads back
+  PASS  function 1 replaces GPIO on its pad only
+  PASS  PWM reaches the pad through the mux
+  PASS  function 2 on pad 0 carries UART1 transmit
+  PASS  selecting GPIO again restores the pad
+  PASS  ADC channel 0 converts to the expected value
+  PASS  ADC channel 1 converts to the expected value
+  PASS  ADC works at the fastest divider
+  PASS  ADC done clears
+  PASS  ADC done raises its interrupt
+  PASS  blank OTP reads zero
+  PASS  programmed bits read back
+  PASS  another word is unaffected
+  PASS  programming adds bits and never clears them
+  PASS  program without the key reports an error
+  PASS  program without the key changes nothing
+  PASS  the key is used up by the next command
+  PASS  an address above 31 reports an error
+  PASS  OTP done raises its interrupt
+  PASS  always-on timer starts stopped at zero
+  PASS  always-on timer counts
+  PASS  no match before the compare value
+  PASS  compare match raises its interrupt
+  PASS  writing status clears the match
+  PASS  all peripheral clocks start enabled
+  PASS  reading a gated peripheral reports a bus error
+  PASS  the timer runs again after its clock returns
+  PASS  re-enabled peripherals answer normally
+All checks passed
+
+ADR SoC remaining system blocks test
+  PASS  first boot reached the reset step
+  PASS  first boot checks passed
+  PASS  always-on timer stayed enabled through the reset
+  PASS  always-on timer kept counting through the reset
+  PASS  OTP contents survive a system reset
+  PASS  clock enables return to all on
+All checks passed
+
+[TB] RESULT: PASS (577955 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

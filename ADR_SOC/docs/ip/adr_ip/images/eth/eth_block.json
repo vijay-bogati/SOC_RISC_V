@@ -1,0 +1,23 @@
+{"size": [880, 360],
+ "frame": {"box": [140, 14, 580, 330], "title": "adr_eth"},
+ "boxes": [
+  {"box": [160, 44, 160, 130], "title": "Registers", "lines": ["CTRL, STATUS", "TX_ADDR, TX_LEN, TX_START", "RX_ADDR, RX_SIZE,", "RX_START, RX_LEN", "link status (synced)"], "color": "blue"},
+  {"box": [360, 44, 160, 130], "title": "axi_dma", "lines": ["verilog-axi, unmodified", "read: memory -> stream", "write: stream -> memory", "64-bit, 8-beat bursts", "one buffer each way"], "color": "green"},
+  {"box": [560, 44, 140, 260], "title": "eth_mac_phy_10g_fifo", "lines": ["verilog-ethernet", "TX / RX frame FIFOs", "4096 bytes each", "(clock crossing)", "MAC: preamble, FCS,", "padding, IFG 12", "PCS: 64b/66b,", "scrambler, block lock,", "BER monitor"], "color": "violet"},
+  {"box": [160, 220, 160, 60], "title": "Interrupt", "lines": ["TX done, RX done"], "color": "red"}
+ ],
+ "arrows": [
+  {"points": [[20, 100], [158, 100]], "label": "APB", "at": [24, 92], "both": true},
+  {"points": [[320, 100], [358, 100]], "label": "desc", "at": [326, 92]},
+  {"points": [[440, 174], [440, 250], [322, 250]], "label": "status", "at": [380, 244]},
+  {"points": [[520, 80], [558, 80]], "label": "TX", "at": [528, 72]},
+  {"points": [[558, 130], [522, 130]], "label": "RX", "at": [528, 122]},
+  {"points": [[440, 44], [440, 30], [860, 30]], "label": "AXI4 initiator 3", "at": [740, 24], "both": true},
+  {"points": [[700, 120], [860, 120]], "label": "serdes_tx_data[63:0], hdr[1:0]", "at": [706, 112]},
+  {"points": [[860, 180], [702, 180]], "label": "serdes_rx_data[63:0], hdr[1:0]", "at": [706, 172]},
+  {"points": [[700, 240], [860, 240]], "label": "rx_bitslip, rx_reset_req", "at": [706, 232]},
+  {"points": [[160, 250], [40, 250]], "label": "", "at": [0, 0]}
+ ],
+ "texts": [{"at": [20, 244], "text": "irq_o: PLIC 27", "size": 10},
+           {"at": [20, 300], "text": "clk_i: registers, DMA, FIFO read/write side", "size": 10, "color": "grey"},
+           {"at": [20, 314], "text": "tx_clk_i, rx_clk_i: SerDes side (390.625 MHz at 25G, 156.25 MHz at 10G)", "size": 10, "color": "grey"}]}

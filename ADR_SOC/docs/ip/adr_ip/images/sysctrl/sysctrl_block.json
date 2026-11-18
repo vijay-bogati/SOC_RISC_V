@@ -1,0 +1,21 @@
+{"size": [840, 330],
+ "frame": {"box": [170, 14, 470, 300], "title": "adr_sysctrl"},
+ "boxes": [
+  {"box": [190, 44, 170, 120], "title": "Register interface", "lines": ["CHIP_ID, VERSION (constants)", "SCRATCH0, SCRATCH1", "BOOT_PINS (RO)", "SOFT_RESET key compare"], "color": "blue"},
+  {"box": [400, 44, 220, 70], "title": "RESET_CAUSE", "lines": ["4 sticky bits, W1C", "power-on reset domain"], "color": "amber"},
+  {"box": [400, 132, 220, 56], "title": "Reset request register", "lines": ["soft key OR watchdog, 1 clock"], "color": "red"},
+  {"box": [400, 214, 220, 70], "title": "CLK_EN", "lines": ["32 bits, all 1 after any reset", "system reset domain"], "color": "green"},
+  {"box": [190, 190, 170, 94], "title": "Reset domains", "lines": ["por_rst_ni: cause, scratch,", "reset request", "sys_rst_ni: CLK_EN"], "color": "grey"}
+ ],
+ "arrows": [
+  {"points": [[20, 100], [188, 100]], "label": "APB", "at": [24, 92]},
+  {"points": [[20, 150], [188, 150]], "label": "boot_pins_i[3:0]", "at": [24, 142]},
+  {"points": [[20, 60], [140, 60], [140, 30], [470, 30], [470, 42]], "label": "debug_reset_i", "at": [24, 52]},
+  {"points": [[20, 300], [660, 300], [660, 160], [622, 160]], "label": "wdt_reset_i (from adr_wdt)", "at": [24, 292]},
+  {"points": [[360, 140], [398, 150]]},
+  {"points": [[622, 150], [820, 150]], "label": "system_reset_req_o", "at": [668, 142]},
+  {"points": [[622, 250], [820, 250]], "label": "clk_en_o[31:0]", "at": [668, 242]},
+  {"points": [[510, 132], [510, 116]], "dashed": true}
+ ],
+ "texts": [{"at": [668, 168], "text": "to adr_rst_gen", "size": 10, "color": "grey"},
+           {"at": [668, 268], "text": "to the clock gates and APB bridge", "size": 10, "color": "grey"}]}

@@ -1,0 +1,25 @@
+
+ADR SoC DDR4 test
+  PASS  the controller starts under hardware control
+  PASS  uncached word reads back
+  PASS  byte lanes
+  PASS  a byte write changes one byte
+  PASS  a cached write reaches memory
+  PASS  the last word works
+  PASS  addresses don't wrap
+  PASS  just past the end gets error data
+  PASS  writes across banks and rows read back
+  PASS  cache refills over 64 KiB
+  PASS  DMA copies from SRAM to DDR
+  PASS  DMA copies within DDR, unaligned
+  PASS  a cached read goes stale after DMA writes
+  PASS  the uncached alias sees the DMA data
+  PASS  invalidating the cache shows the DMA data
+  PASS  amoadd.d
+  PASS  lr.d/sc.d
+  PASS  code runs from DDR
+All checks passed
+
+[TB] RESULT: PASS (378615 cycles)
+[TOP] VERDICT: PASS
+- /media/sf_Shared_ubuntu/ADR_SOC_Release/tb/verilator/tb_top.sv:366: Verilog $finish

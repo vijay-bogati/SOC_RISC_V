@@ -1,0 +1,21 @@
+{"size": [880, 330],
+ "frame": {"box": [140, 14, 600, 300], "title": "adr_usb"},
+ "boxes": [
+  {"box": [160, 50, 150, 110], "title": "APB to TL-UL", "lines": ["4-state FSM", "32-bit word access", "PREADY when the", "response returns"], "color": "blue"},
+  {"box": [160, 190, 150, 50], "title": "tlul_cmd_intg_gen", "lines": ["bus integrity bits"], "color": "grey"},
+  {"box": [350, 50, 150, 110], "title": "tlul_fifo_async", "lines": ["request and response", "FIFOs, 4 deep", "clk_i <-> usb_clk_i"], "color": "amber"},
+  {"box": [540, 40, 180, 230], "title": "usbdev (OpenTitan)", "lines": ["registers 0x000-0x0A8", "packet buffer 2 KiB", "at 0x800: 32 x 64 B", "12 endpoints", "full-speed SIE and", "PHY logic", "18 interrupts", "", "runs on usb_clk_i"], "color": "green"}
+ ],
+ "arrows": [
+  {"points": [[20, 100], [158, 100]], "label": "APB (wait states)", "at": [24, 92], "both": true},
+  {"points": [[235, 160], [235, 188]]},
+  {"points": [[310, 215], [330, 215], [330, 120], [348, 120]]},
+  {"points": [[310, 80], [348, 80]], "both": true},
+  {"points": [[500, 100], [538, 100]], "both": true},
+  {"points": [[720, 90], [860, 90]], "label": "dp_o, dp_en_o, dn_o, dn_en_o", "at": [726, 82]},
+  {"points": [[860, 130], [722, 130]], "label": "dp_i, dn_i, sense_i", "at": [726, 122]},
+  {"points": [[720, 170], [860, 170]], "label": "dp_pullup_o, dn_pullup_o", "at": [726, 162]},
+  {"points": [[540, 250], [100, 250]], "label": "", "at": [0, 0]}
+ ],
+ "texts": [{"at": [20, 244], "text": "irq_o = OR of 18: PLIC 28", "size": 10},
+           {"at": [20, 290], "text": "clk_i / rst_ni: APB side; usb_clk_i / usb_rst_ni: everything else (48 MHz)", "size": 10, "color": "grey"}]}
